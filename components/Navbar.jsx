@@ -5,11 +5,12 @@ import { ModeToggle } from "./ModeToggle";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
+import LoginOut from "./LoginOut";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <header className="sticky top-0 border-b h-14 flex justify-between items-center px-20 bg-slate-200">
+    <header className="sticky top-0 border-b h-14 flex justify-between items-center px-20 bg-slate-200 dark:bg-slate-800 dark:text-white">
       <div className="mr-4 hidden md:flex">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <span className="hidden font-bold sm:inline-block">FoodShare</span>
@@ -44,7 +45,10 @@ export default function Navbar() {
           </nav>
         </SheetContent>
       </Sheet>
-      <ModeToggle />
+      <div className="flex flex-row items-center justify-end gap-4">
+        {/* <LoginOut /> */}
+        <ModeToggle />
+      </div>
     </header>
   );
 }
