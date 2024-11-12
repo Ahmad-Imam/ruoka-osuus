@@ -21,6 +21,7 @@
     "@supabase/supabase-js": "^2.45.4",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
+    "browser-image-compression": "^2.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.451.0",
@@ -29,7 +30,8 @@
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.5.3",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
     "eslint": "^8.57.1",

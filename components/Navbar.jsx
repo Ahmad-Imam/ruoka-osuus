@@ -46,7 +46,7 @@ export default function Navbar() {
         </SheetContent>
       </Sheet>
       <div className="flex flex-row items-center justify-end gap-4">
-        {/* <LoginOut /> */}
+        <LoginOut />
         <ModeToggle />
       </div>
     </header>

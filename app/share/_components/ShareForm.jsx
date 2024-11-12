@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import ShareAddress from "./ShareAddress";
+import FoodImage from "@/components/FoodImage";
 
 export default function ShareForm() {
   const [formData, setFormData] = useState({
@@ -100,6 +101,9 @@ export default function ShareForm() {
             </SelectContent>
           </Select>
         </div>
+
+        <FoodImage />
+
         <ShareAddress />
 
         <Button type="submit">Share Food</Button>

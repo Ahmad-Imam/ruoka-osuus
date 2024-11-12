@@ -6,6 +6,16 @@ const nextConfig = {
         protocol: "https",
         hostname: "lh3.googleusercontent.com",
       },
+      {
+        protocol: "https",
+        hostname: "higssmppvjoqahjxesne.supabase.co",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "hheakidhvgpegldaqczr.supabase.co",
+        port: "",
+      },
     ],
   },
 };

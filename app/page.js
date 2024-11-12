@@ -19,7 +19,7 @@ export default function Home() {
         <section className="py-20 text-center">
           <div className="container mx-auto px-4">
             <h1 className="text-4xl sm:text-6xl font-bold mb-4">
-              Welcome to <span className="text-primary">FoodShare</span>
+              Welcome to <span className="text-primary">ffff</span>
             </h1>
             <p className="mt-3 text-xl sm:text-2xl mb-8">
               Share your excess food and reduce waste in your community

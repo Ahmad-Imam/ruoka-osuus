@@ -2,8 +2,7 @@
 "use client";
 import { supabaseBrowser } from "@/supabase/browser";
 import React, { useEffect, useState } from "react";
-import { Button } from "./ui/button";
-import { useRouter } from "next/navigation";
+
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -14,10 +13,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { ChevronDownIcon } from "lucide-react";
+import { loginUser, logoutUser } from "@/app/actions";
 
 export default function LoginOut() {
   const supabase = supabaseBrowser();
-  const router = useRouter();
+
   const [loggedUser, setLoggedUser] = useState(null);
   console.log(loggedUser);
 
@@ -34,17 +34,22 @@ export default function LoginOut() {
   }, []);
 
   async function handleLogin() {
-    supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: location.origin + "/auth/callback",
-      },
-    });
+    // supabase.auth.signInWithOAuth({
+    //   provider: "google",
+    //   options: {
+    //     redirectTo: location.origin + "/auth/callback",
+    //   },
+    // });
+
+    console.log("login");
+    await loginUser();
+    console.log("login done");
   }
 
   async function handleLogout() {
-    await supabase.auth.signOut();
-    window.location.reload();
+    await logoutUser();
+    setLoggedUser(null);
+    // window.location.reload();
   }
 
   return (
