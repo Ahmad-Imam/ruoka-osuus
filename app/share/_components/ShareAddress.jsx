@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useJsApiLoader } from "@react-google-maps/api";
 
-export default function ShareAddress() {
+export default function ShareAddress({ setFormData }) {
   const libs = ["places", "core", "maps", "marker"];
 
   const [map, setMap] = useState(null);
@@ -21,10 +21,11 @@ export default function ShareAddress() {
   });
 
   const mapRef = useRef(null);
+
   const placesAutoCompleteRef = useRef(null);
 
   const { isLoaded } = useJsApiLoader({
-    // nonce: "477d4456-f7b5-45e2-8945-5f17b3964752",
+    nonce: "477d4456-f7b5-45e2-8945-5f17b3964752",
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY,
     libraries: libs,
   });
@@ -64,6 +65,14 @@ export default function ShareAddress() {
       );
       setMap(gMap);
       setAutoComplete(gAutoComplete);
+      setFormData((prev) => ({
+        ...prev,
+        address: "Initial Address",
+        location: {
+          lat: currentPosition?.lat,
+          lng: currentPosition?.lng,
+        },
+      }));
 
       //   gAutoComplete.addListener("place_changed", () => {
       //     const place = gAutoComplete.getPlace();
@@ -79,9 +88,19 @@ export default function ShareAddress() {
   useEffect(() => {
     autoComplete?.addListener("place_changed", () => {
       const place = autoComplete?.getPlace();
+
       setSelectedPlace(place);
       setSelectedAddress(place?.formatted_address);
       const position = place.geometry?.location;
+
+      setFormData((prev) => ({
+        ...prev,
+        address: place?.formatted_address,
+        location: {
+          lat: position?.lat(),
+          lng: position?.lng(),
+        },
+      }));
 
       if (position) {
         setMarker(position, place?.name);
@@ -116,20 +135,20 @@ export default function ShareAddress() {
     // });
   }
 
-  function handleLocationClick() {
+  function handleCurrentLocationClick() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(success, error);
     } else {
       console.log("Geolocation not supported");
     }
 
-    function success(position) {
+    async function success(position) {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
       setCurrentPosition({ lat: latitude, lng: longitude });
       setMarker({ lat: latitude, lng: longitude }, "Current Location");
       console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-      const currentAddress = new google.maps.Geocoder().geocode(
+      const currentAddress = await new google.maps.Geocoder().geocode(
         {
           location: { lat: latitude, lng: longitude },
         },
@@ -137,6 +156,14 @@ export default function ShareAddress() {
           if (status === "OK") {
             console.log(results[0].formatted_address);
             setSelectedAddress(results[0].formatted_address);
+            setFormData((prev) => ({
+              ...prev,
+              address: results[0]?.formatted_address,
+              location: {
+                lat: latitude,
+                lng: longitude,
+              },
+            }));
           }
         }
       );
@@ -152,7 +179,7 @@ export default function ShareAddress() {
     <div>
       <div className="flex justify-between">
         <Label htmlFor="foodAddress">Address</Label>
-        <button type="button" onClick={handleLocationClick}>
+        <button type="button" onClick={handleCurrentLocationClick}>
           Current Location
         </button>
       </div>
@@ -162,10 +189,10 @@ export default function ShareAddress() {
         name="foodAddress"
         className="mb-2"
       />
-      <div className="mb-10">{selectedAddress}</div>
+      <div className="my-5">Selected Address: {selectedAddress}</div>
       <div className="flex flex-col space-y-4">
         {isLoaded ? (
-          <div className="h-[400px]rounded-md" ref={mapRef} />
+          <div className="h-[400px] rounded-md" ref={mapRef} />
         ) : (
           <p>Loading...</p>
         )}

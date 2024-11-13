@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "./providers/theme-provider";
 import { createClient } from "@/supabase/server";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -36,6 +37,7 @@ export default async function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange
         >
+          <Toaster position="top-center" duration="1500" richColors />
           <Navbar />
           <div className="flex min-h-screen flex-col ">
             <main className="flex-1">{children}</main>

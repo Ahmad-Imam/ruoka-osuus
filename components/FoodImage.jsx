@@ -5,7 +5,7 @@ import { ChangeEvent, useRef, useState, useTransition } from "react";
 import { convertBlobUrlToFile } from "@/lib/utils";
 import Image from "next/image";
 
-export default function FoodImage() {
+export default function FoodImage({ setFormData }) {
   const [imageUrls, setImageUrls] = useState(null);
 
   const imageInputRef = useRef(null);
@@ -42,6 +42,12 @@ export default function FoodImage() {
 
       console.log("image urls");
       console.log(uploadedUrl);
+
+      setFormData((prev) => ({
+        ...prev,
+        imageUrl: uploadedUrl,
+      }));
+
       setImageUrls(null);
     });
   };

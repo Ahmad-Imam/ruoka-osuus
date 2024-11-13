@@ -14,20 +14,40 @@ import {
 } from "@/components/ui/select";
 import ShareAddress from "./ShareAddress";
 import FoodImage from "@/components/FoodImage";
+import { toast } from "sonner";
+import { deleteImage } from "@/supabase/storage/client";
+import { addFoodAction, getAllFoodAction } from "@/app/actions";
 
 export default function ShareForm() {
   const [formData, setFormData] = useState({
-    foodName: "",
+    title: "",
     description: "",
-    quantity: "",
+    amount: "",
     expirationDate: "",
     category: "",
+    address: "",
+    location: {
+      latitude: "",
+      longitude: "",
+    },
+    imageUrl: "",
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission (e.g., send data to backend)
     console.log("Form submitted:", formData);
+    toast.success("Food shared successfully!");
+
+    // await deleteImage(
+    //   "https://hheakidhvgpegldaqczr.supabase.co/storage/v1/object/public/ruoka/2b7636de-5774-439b-babf-cecef30b0b57.jpeg"
+    // );
+
+    const newFood = await addFoodAction(formData);
+    console.log(newFood);
+    const allFood = await getAllFoodAction();
+    console.log(allFood);
+
     // Reset form or show success message
   };
 
@@ -40,11 +60,11 @@ export default function ShareForm() {
       <h1 className="text-3xl font-bold mb-6">Share Your Food</h1>
       <form onSubmit={handleSubmit} className="space-y-6 w-2/3">
         <div>
-          <Label htmlFor="foodName">Food Name</Label>
+          <Label htmlFor="title">Food Name</Label>
           <Input
-            id="foodName"
-            name="foodName"
-            value={formData.foodName}
+            id="title"
+            name="title"
+            value={formData.title}
             onChange={handleChange}
             required
           />
@@ -60,11 +80,12 @@ export default function ShareForm() {
           />
         </div>
         <div>
-          <Label htmlFor="quantity">Quantity</Label>
+          <Label htmlFor="amount">amount</Label>
           <Input
-            id="quantity"
-            name="quantity"
-            value={formData.quantity}
+            id="amount"
+            name="amount"
+            type="number"
+            value={formData.amount}
             onChange={handleChange}
             required
           />
@@ -102,9 +123,9 @@ export default function ShareForm() {
           </Select>
         </div>
 
-        <FoodImage />
+        <FoodImage setFormData={setFormData} />
 
-        <ShareAddress />
+        <ShareAddress setFormData={setFormData} />
 
         <Button type="submit">Share Food</Button>
       </form>

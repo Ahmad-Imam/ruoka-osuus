@@ -6,7 +6,7 @@ export function getAllFood() {
   return supabase.from("food").select();
 }
 
-export function addFood(food) {
+export function addFood(formData) {
   console.log("in addFood");
-  return supabase.from("food").insert(food);
+  return supabase.from("food").insert(formData);
 }
