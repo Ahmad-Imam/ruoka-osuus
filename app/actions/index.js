@@ -1,7 +1,8 @@
 "use server";
 
-import { addFood, getAllFood } from "@/queries/food";
+import { addFood, getAllFood, reserveFood } from "@/queries/food";
 import { createClient } from "@/supabase/server";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function loginUser() {
@@ -43,4 +44,13 @@ export async function addFoodAction(formData) {
   // console.log(allFood);
   return newFood;
   // return supabaseServer.from("food").select();
+}
+
+export async function reserveFoodAction(id, newStatus) {
+  const { data, error } = await reserveFood(id, newStatus);
+
+  revalidatePath("/foodDetails/" + id);
+
+  console.log("Reserve food");
+  return data;
 }

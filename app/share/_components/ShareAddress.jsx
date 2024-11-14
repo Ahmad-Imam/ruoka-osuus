@@ -48,6 +48,20 @@ export default function ShareAddress({ setFormData }) {
         title: "marker",
       });
 
+      const cityCircle = new google.maps.Circle({
+        strokeColor: "#00FF00",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#0FF000",
+        fillOpacity: 0.35,
+        map: gMap,
+        center: {
+          lat: mapOptions?.center?.lat,
+          lng: mapOptions?.center.lng,
+        },
+        radius: 5000,
+      });
+
       //   const ontarioBounds = new google.maps.LatLngBounds(
       //     new google.maps.LatLng({ lat: 48.4026688, lng: -89.4053302 }), // south west
       //     new google.maps.LatLng({ lat: 54.3666786, lng: -82.5269667 }) // north east
@@ -120,6 +134,20 @@ export default function ShareAddress({ setFormData }) {
       map: map,
       position: location,
       title: "marker",
+    });
+
+    const cityCircle = new google.maps.Circle({
+      strokeColor: "#00FF00",
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: "#0FF000",
+      fillOpacity: 0.35,
+      map,
+      center: {
+        lat: mapOptions?.center?.lat,
+        lng: mapOptions?.center.lng,
+      },
+      radius: 5000,
     });
 
     // const infoWindow = new google.maps.InfoWindow({

@@ -19,7 +19,7 @@ export default function LoginOut() {
   const supabase = supabaseBrowser();
 
   const [loggedUser, setLoggedUser] = useState(null);
-  console.log(loggedUser);
+  // console.log(loggedUser);
 
   //   console.log(supabase.auth.getUser());
 
@@ -59,17 +59,17 @@ export default function LoginOut() {
           <DropdownMenuTrigger asChild>
             <div className="flex flex-row justify-between items-center cursor-pointer hover:underline">
               <button
-                variant="link"
+                // variant="link"
                 className="text-sm font-semibold md:text-lg flex items-center gap-2"
               >
-                <Image
+                {/* <Image
                   src={loggedUser?.avatar_url}
                   width={30}
                   height={30}
                   alt="user-image"
                   className="rounded-full"
                   prefetch="true"
-                />
+                /> */}
                 {loggedUser?.name}
               </button>
               <ChevronDownIcon className="ml-1 h-4 w-4" />
@@ -97,7 +97,7 @@ export default function LoginOut() {
             "text-sm font-semibold transition-colors hover:text-foreground hover:underline md:text-lg"
           }
           // className={`text-sm font-medium text-muted-foreground hover:text-foreground hover:underline`}
-          prefetch={false}
+          // prefetch={false}
         >
           Login
         </button>

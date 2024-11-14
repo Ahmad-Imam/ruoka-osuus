@@ -18,7 +18,7 @@ import { toast } from "sonner";
 import { deleteImage } from "@/supabase/storage/client";
 import { addFoodAction, getAllFoodAction } from "@/app/actions";
 
-export default function ShareForm() {
+export default function ShareForm({ userData }) {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -31,6 +31,7 @@ export default function ShareForm() {
       longitude: "",
     },
     imageUrl: "",
+    userId: userData?.id,
   });
 
   const handleSubmit = async (e) => {
