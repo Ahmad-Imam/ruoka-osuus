@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import FoodCard from "./FoodCard";
+import { getAllFoodLocationAction } from "@/app/actions";
 
 const mockFoodItems = [
   {
@@ -40,18 +41,45 @@ const mockFoodItems = [
 ];
 
 export default function FoodList({ allFood }) {
-  console.log(allFood);
+  // console.log(allFood);
   const [searchTerm, setSearchTerm] = useState("");
   const [foodItems, setFoodItems] = useState(allFood);
+  const [currentLocation, setCurrentLocation] = useState({ lat: 0, lng: 0 });
+  // console.log(currentLocation);
 
   const handleSearch = (e) => {
     e.preventDefault();
     // Filter food items based on search term
+    if (searchTerm === "") {
+      setFoodItems(allFood);
+      return;
+    }
     const filteredItems = foodItems.filter((item) =>
       item.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFoodItems(filteredItems);
   };
+
+  async function handleMyLocationClick() {
+    console.log("clicked");
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setCurrentLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+        },
+        (error) => console.error("Error getting location:", error),
+        { enableHighAccuracy: true }
+      );
+    }
+
+    const newFoodList = await getAllFoodLocationAction();
+
+    setFoodItems(newFoodList);
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -71,11 +99,14 @@ export default function FoodList({ allFood }) {
             />
           </div>
           <Button type="submit">Search</Button>
+          <Button type="button" onClick={handleMyLocationClick}>
+            Nearby
+          </Button>
         </div>
       </form>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {foodItems.map((item) => (
-          <FoodCard item={item} key={item.id} />
+          <FoodCard item={item} key={item?.uuid} />
         ))}
       </div>
     </div>

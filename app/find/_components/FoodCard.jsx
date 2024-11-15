@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 
 export default function FoodCard({ item }) {
-  console.log(item);
+  // console.log(item);
   return (
     <Card>
       <CardHeader>
@@ -14,7 +14,7 @@ export default function FoodCard({ item }) {
       <CardContent>
         <p>Quantity: {item.amount}</p>
         <p>Category: {item.category}</p>
-        <p>Expires: {item.expirationDate}</p>
+        <p>Expires: {item.expirationdate}</p>
         <Link href={`/foodDetails/${item?.uuid}`} className="mt-4">
           <Button>Details</Button>
         </Link>

@@ -144,8 +144,8 @@ export default function ShareAddress({ setFormData }) {
       fillOpacity: 0.35,
       map,
       center: {
-        lat: mapOptions?.center?.lat,
-        lng: mapOptions?.center.lng,
+        lat: location?.lat,
+        lng: location?.lng,
       },
       radius: 5000,
     });

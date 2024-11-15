@@ -1,6 +1,11 @@
 "use server";
 
-import { addFood, getAllFood, reserveFood } from "@/queries/food";
+import {
+  addFood,
+  getAllFood,
+  getAllFoodFromLocation,
+  reserveFood,
+} from "@/queries/food";
 import { createClient } from "@/supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -53,4 +58,11 @@ export async function reserveFoodAction(id, newStatus) {
 
   console.log("Reserve food");
   return data;
+}
+
+export async function getAllFoodLocationAction(location, radius) {
+  const allFoodLocation = await getAllFoodFromLocation(location, radius);
+  // console.log(allFoodLocation);
+  return allFoodLocation;
+  // return supabaseServer.from("food").select();
 }

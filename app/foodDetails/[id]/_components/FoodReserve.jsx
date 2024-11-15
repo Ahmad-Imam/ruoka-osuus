@@ -6,12 +6,25 @@ import { reserveFoodAction } from "@/app/actions";
 export default function FoodReserve({ foodInfo }) {
   async function handleReserveClick() {
     console.log("Reserve food");
-    await reserveFoodAction(foodInfo.uuid, "reserved");
+
+    if (foodInfo?.status === "reserved") {
+      await reserveFoodAction(foodInfo.uuid, "available");
+    } else {
+      await reserveFoodAction(foodInfo.uuid, "reserved");
+    }
   }
 
   return (
-    <div className="flex justify-between items-end">
-      {/* <Button variant="outline">Contact Sharer</Button> */}
+    <div className="flex justify-between items-end w-full">
+      {foodInfo?.status === "reserved" && (
+        <Button
+          onClick={handleReserveClick}
+          //   disabled={foodInfo?.status !== "reserved"}
+          variant="outline"
+        >
+          Cancel Reservation
+        </Button>
+      )}
       <Button
         disabled={foodInfo?.status === "reserved"}
         onClick={handleReserveClick}
