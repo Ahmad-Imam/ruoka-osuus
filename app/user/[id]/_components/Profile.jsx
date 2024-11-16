@@ -35,7 +35,7 @@ const renderStars = (rating) => {
     ));
 };
 
-export default function UserProfile() {
+export default function UserProfile({ donatedFoodList }) {
   // Mock data for user profile
   const [user, setUser] = useState({
     id: "57b0c74d-2455-4a95-93b6-6a2d5800b6ed",
@@ -134,17 +134,22 @@ export default function UserProfile() {
                 </TabsList>
                 <TabsContent value="donated" className="mt-4">
                   <ul className="space-y-2">
-                    {donatedFood.map((item) => (
+                    {donatedFoodList.map((item) => (
                       <li
                         key={item.id}
                         className="bg-gray-50 p-3 rounded-md flex justify-between items-center"
                       >
-                        <span className="font-medium text-gray-900">
-                          {item.name}
-                        </span>
-                        <span className="text-sm text-gray-600">
-                          {item.date}
-                        </span>
+                        <div className="font-medium text-gray-900 w-10">
+                          {item.title}
+                        </div>
+
+                        <div className="text-sm text-gray-600 ">
+                          {item.expirationdate}
+                        </div>
+
+                        <div className="text-sm text-gray-600 ">
+                          {item.amount}
+                        </div>
                       </li>
                     ))}
                   </ul>

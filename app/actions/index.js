@@ -5,6 +5,7 @@ import {
   getAllFood,
   getAllFoodFromLocation,
   reserveFood,
+  submitReviewFood,
 } from "@/queries/food";
 import { createClient } from "@/supabase/server";
 import { revalidatePath } from "next/cache";
@@ -65,4 +66,10 @@ export async function getAllFoodLocationAction(location, radius) {
   // console.log(allFoodLocation);
   return allFoodLocation;
   // return supabaseServer.from("food").select();
+}
+
+export async function submitReviewFoodAction(reviewData, foodId) {
+  const newFood = await submitReviewFood(reviewData, foodId);
+  console.log("Review submitted");
+  return newFood;
 }

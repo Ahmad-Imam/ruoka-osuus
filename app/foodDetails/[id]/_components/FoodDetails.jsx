@@ -12,6 +12,8 @@ import {
 import { Separator } from "@/components/ui/separator";
 import FoodMap from "./FoodMap";
 import FoodReserve from "./FoodReserve";
+import Link from "next/link";
+import { FoodReview } from "./FoodReview";
 
 export default function FoodDetails({ foodInfo, foodUser }) {
   // console.log(foodUser);
@@ -29,9 +31,15 @@ export default function FoodDetails({ foodInfo, foodUser }) {
                 {foodInfo.category}
               </Badge>
             </div>
-            <Badge variant="secondary" className="text-sm uppercase">
-              {foodInfo.status}
-            </Badge>
+            <div className="flex flex-col gap-2">
+              <Badge
+                variant="secondary"
+                className="text-sm uppercase  justify-center"
+              >
+                {foodInfo.status}
+              </Badge>
+              <FoodReview foodInfo={foodInfo} />
+            </div>
           </div>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -71,11 +79,13 @@ export default function FoodDetails({ foodInfo, foodUser }) {
           </div>
           <div>
             <h3 className="font-semibold mb-2">Shared by</h3>
-            <p className="text-sm flex items-center">
-              <UserIcon className="w-4 h-4 mr-1" />
-              User ID: {foodUser?.full_name}
-              {foodInfo.userId}
-            </p>
+            <Link href={`/user/${foodInfo.userId}`}>
+              <p className="text-sm flex items-center">
+                <UserIcon className="w-4 h-4 mr-1" />
+                User ID: {foodUser?.full_name}
+                {foodInfo.userId}
+              </p>
+            </Link>
           </div>
         </CardContent>
         <Separator className="my-4" />
