@@ -1,7 +1,6 @@
 import { createClient } from "@/supabase/server";
 
-const supabase = createClient();
-
-export function getUser(id) {
+export function getUserById(id) {
+  const supabase = createClient();
   return supabase.from("profiles").select().eq("id", id);
 }

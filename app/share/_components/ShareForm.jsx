@@ -23,7 +23,7 @@ export default function ShareForm({ userData }) {
     title: "",
     description: "",
     amount: "",
-    expirationDate: "",
+    expirationdate: "",
     category: "",
     address: "",
     location: {
@@ -32,6 +32,7 @@ export default function ShareForm({ userData }) {
     },
     imageUrl: "",
     userId: userData?.id,
+    status: "available",
   });
 
   const handleSubmit = async (e) => {
@@ -92,12 +93,12 @@ export default function ShareForm({ userData }) {
           />
         </div>
         <div>
-          <Label htmlFor="expirationDate">Expiration Date</Label>
+          <Label htmlFor="expirationdate">Expiration Date</Label>
           <Input
-            id="expirationDate"
-            name="expirationDate"
+            id="expirationdate"
+            name="expirationdate"
             type="date"
-            value={formData.expirationDate}
+            value={formData.expirationdate}
             onChange={handleChange}
             required
           />

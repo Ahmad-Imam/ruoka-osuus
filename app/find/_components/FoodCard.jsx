@@ -9,14 +9,17 @@ export default function FoodCard({ item }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{item.title}</CardTitle>
+        <CardTitle className="flex flex-row justify-between ">
+          {item.title}
+          {item?.distance && <div>Distance: {item.distance.toFixed(2)} KM</div>}
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <p>Quantity: {item.amount}</p>
         <p>Category: {item.category}</p>
         <p>Expires: {item.expirationdate}</p>
-        <Link href={`/foodDetails/${item?.uuid}`} className="mt-4">
-          <Button>Details</Button>
+        <Link href={`/foodDetails/${item?.uuid}`} className="">
+          <Button className="my-4 ">Details</Button>
         </Link>
       </CardContent>
     </Card>

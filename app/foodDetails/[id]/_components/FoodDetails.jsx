@@ -13,7 +13,8 @@ import { Separator } from "@/components/ui/separator";
 import FoodMap from "./FoodMap";
 import FoodReserve from "./FoodReserve";
 
-export default function FoodDetails({ foodInfo }) {
+export default function FoodDetails({ foodInfo, foodUser }) {
+  // console.log(foodUser);
   // console.log(foodInfo);
   return (
     <div className="min-h-screen bg-white p-4 md:p-8">
@@ -35,16 +36,18 @@ export default function FoodDetails({ foodInfo }) {
         </CardHeader>
         <CardContent className="space-y-6">
           <Image
-            src={foodInfo.imageUrl}
-            alt={foodInfo.title}
+            src={foodInfo?.imageUrl}
+            alt={foodInfo?.title}
             width={400}
             height={300}
             className="w-full h-64 object-cover rounded-md"
           />
+
           <div>
             <h3 className="font-semibold mb-2">Description</h3>
             <p className="text-sm text-gray-600">{foodInfo.description}</p>
           </div>
+
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
               <h3 className="font-semibold mb-1">Amount</h3>
@@ -54,7 +57,7 @@ export default function FoodDetails({ foodInfo }) {
               <h3 className="font-semibold mb-1">Expiration Date</h3>
               <p className="flex items-center">
                 <CalendarIcon className="w-4 h-4 mr-1" />
-                {foodInfo.expirationDate}
+                {foodInfo.expirationdate}
               </p>
             </div>
           </div>
@@ -70,7 +73,8 @@ export default function FoodDetails({ foodInfo }) {
             <h3 className="font-semibold mb-2">Shared by</h3>
             <p className="text-sm flex items-center">
               <UserIcon className="w-4 h-4 mr-1" />
-              User ID: {foodInfo.userId}
+              User ID: {foodUser?.full_name}
+              {foodInfo.userId}
             </p>
           </div>
         </CardContent>

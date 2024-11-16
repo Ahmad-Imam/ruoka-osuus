@@ -1,13 +1,15 @@
 import { createClient } from "@/supabase/server";
 import ShareForm from "./_components/ShareForm";
-import { getUser } from "@/queries/user";
+import { getUserById } from "@/queries/user";
 
 export default async function ShareFood() {
   const supabaseServer = createClient();
 
   const { data, error } = await supabaseServer.auth.getUser();
   // console.log(data?.user?.user_metadata);
-  const { data: userData, error: userError } = await getUser(data?.user?.id);
+  const { data: userData, error: userError } = await getUserById(
+    data?.user?.id
+  );
   // console.log(userData);
 
   return (
