@@ -1,12 +1,10 @@
-"use client";
-
-import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+
 import { StarIcon } from "lucide-react";
+import ProfileRadius from "./ProfileRadius";
+import { StarFilledIcon } from "@radix-ui/react-icons";
 
 // Mock data for food history
 const donatedFood = [
@@ -26,7 +24,7 @@ const renderStars = (rating) => {
   return Array(5)
     .fill(0)
     .map((_, i) => (
-      <StarIcon
+      <StarFilledIcon
         key={i}
         className={`h-5 w-5 ${
           i < rating ? "text-yellow-400" : "text-gray-300"
@@ -35,29 +33,8 @@ const renderStars = (rating) => {
     ));
 };
 
-export default function UserProfile({ donatedFoodList }) {
+export default function UserProfile({ userData, donatedFoodList, reviews }) {
   // Mock data for user profile
-  const [user, setUser] = useState({
-    id: "57b0c74d-2455-4a95-93b6-6a2d5800b6ed",
-    full_name: "Ahmad Imam",
-    email: "ahmadimam71@gmail.com",
-    avatar_url:
-      "https://lh3.googleusercontent.com/a/ACg8ocIFv5RBJUmyAMCOZjf5E7neW7X0F3byrzkNMkMMibnfQFeWSE0nJg=s96-c",
-    radius: 10,
-    access_review: 4,
-    comm_review: 5,
-    quality_review: 3,
-  });
-
-  const [radius, setRadius] = useState(user.radius || "");
-
-  const handleRadiusChange = (e) => {
-    setRadius(e.target.value);
-  };
-
-  const handleRadiusSubmit = () => {
-    setUser((prevUser) => ({ ...prevUser, radius: Number(radius) }));
-  };
 
   return (
     <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
@@ -66,9 +43,12 @@ export default function UserProfile({ donatedFoodList }) {
           <CardHeader className="pb-0">
             <div className="flex items-center space-x-4">
               <Avatar className="h-24 w-24">
-                <AvatarImage src={user.avatar_url} alt={user.full_name} />
+                <AvatarImage
+                  src={userData.avatar_url}
+                  alt={userData.full_name}
+                />
                 <AvatarFallback>
-                  {user.full_name
+                  {userData.full_name
                     .split(" ")
                     .map((n) => n[0])
                     .join("")}
@@ -76,52 +56,38 @@ export default function UserProfile({ donatedFoodList }) {
               </Avatar>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">
-                  {user.full_name}
+                  {userData.full_name}
                 </h1>
-                <p className="text-gray-600">{user.email}</p>
+                <p className="text-gray-600">{userData.email}</p>
               </div>
             </div>
           </CardHeader>
           <CardContent>
             <div className="mt-4 space-y-4">
-              <div className="flex items-center space-x-2">
-                <span className="text-sm font-medium text-gray-500">
-                  Radius
-                </span>
-                <Input
-                  type="number"
-                  value={radius}
-                  onChange={handleRadiusChange}
-                  placeholder="Set radius"
-                  className="w-24"
-                />
-                <span className="text-sm text-gray-500">km</span>
-                <Button
-                  onClick={handleRadiusSubmit}
-                  variant="outline"
-                  size="sm"
-                >
-                  Set
-                </Button>
-              </div>
+              <ProfileRadius userData={userData} />
+              <div className="flex items-center space-x-2"></div>
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-medium text-gray-500">
                     Accessibility
                   </span>
-                  <div className="flex">{renderStars(user.access_review)}</div>
+                  <div className="flex">
+                    {renderStars(reviews.access_review)}
+                  </div>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-medium text-gray-500">
                     Communication
                   </span>
-                  <div className="flex">{renderStars(user.comm_review)}</div>
+                  <div className="flex">{renderStars(reviews.comm_review)}</div>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-medium text-gray-500">
                     Quality
                   </span>
-                  <div className="flex">{renderStars(user.quality_review)}</div>
+                  <div className="flex">
+                    {renderStars(reviews.quality_review)}
+                  </div>
                 </div>
               </div>
             </div>
@@ -134,6 +100,11 @@ export default function UserProfile({ donatedFoodList }) {
                 </TabsList>
                 <TabsContent value="donated" className="mt-4">
                   <ul className="space-y-2">
+                    <div className="flex items-center justify-between p-3">
+                      <p>title</p>
+                      <p>Expired Date</p>
+                      <p>Amount</p>
+                    </div>
                     {donatedFoodList.map((item) => (
                       <li
                         key={item.id}

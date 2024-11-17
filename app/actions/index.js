@@ -7,6 +7,7 @@ import {
   reserveFood,
   submitReviewFood,
 } from "@/queries/food";
+import { setUserRadius } from "@/queries/user";
 import { createClient } from "@/supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -71,5 +72,13 @@ export async function getAllFoodLocationAction(location, radius) {
 export async function submitReviewFoodAction(reviewData, foodId) {
   const newFood = await submitReviewFood(reviewData, foodId);
   console.log("Review submitted");
+  revalidatePath("/foodDetails/" + foodId);
   return newFood;
+}
+
+export async function setUserRadiusAction(userId, radius) {
+  const newUser = await setUserRadius(userId, radius);
+  revalidatePath("/user/" + userId);
+
+  // return data;
 }

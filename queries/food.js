@@ -7,7 +7,7 @@ export function getAllFood() {
 
 export function getFoodById(id) {
   const supabase = createClient();
-  return supabase.from("food").select().eq("uuid", id);
+  return supabase.from("food").select().eq("id", id);
 }
 
 export function addFood(formData) {
@@ -19,7 +19,7 @@ export function addFood(formData) {
 //change food status to reserved
 export function reserveFood(id, newStatus) {
   const supabase = createClient();
-  return supabase.from("food").update({ status: newStatus }).eq("uuid", id);
+  return supabase.from("food").update({ status: newStatus }).eq("id", id);
 }
 
 export async function getAllFoodFromLocation(location, radius) {
@@ -58,7 +58,7 @@ export async function submitReviewFood(reviewData, foodId) {
       comm_review: comm_review,
       quality_review: quality_review,
     })
-    .eq("uuid", foodId);
+    .eq("id", foodId);
 
   return data;
 }

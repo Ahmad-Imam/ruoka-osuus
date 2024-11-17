@@ -14,8 +14,23 @@ import FoodMap from "./FoodMap";
 import FoodReserve from "./FoodReserve";
 import Link from "next/link";
 import { FoodReview } from "./FoodReview";
+import { StarFilledIcon } from "@radix-ui/react-icons";
 
 export default function FoodDetails({ foodInfo, foodUser }) {
+  const renderStars = (rating) => {
+    if (rating === null) return "No reviews yet";
+    return Array(5)
+      .fill(0)
+      .map((_, i) => (
+        <StarFilledIcon
+          key={i}
+          className={`h-5 w-5 ${
+            i < rating ? "text-yellow-400" : "text-gray-300"
+          }`}
+        />
+      ));
+  };
+
   // console.log(foodUser);
   // console.log(foodInfo);
   return (
@@ -38,7 +53,9 @@ export default function FoodDetails({ foodInfo, foodUser }) {
               >
                 {foodInfo.status}
               </Badge>
-              <FoodReview foodInfo={foodInfo} />
+              {foodInfo?.access_review === 0 && (
+                <FoodReview foodInfo={foodInfo} />
+              )}
             </div>
           </div>
         </CardHeader>
@@ -86,6 +103,26 @@ export default function FoodDetails({ foodInfo, foodUser }) {
                 {foodInfo.userId}
               </p>
             </Link>
+          </div>
+
+          <div className="space-y-2">
+            <h3 className="font-semibold mb-2">Rating:</h3>
+            <div className="flex justify-between items-center">
+              <span className="text-sm font-medium text-gray-500">
+                Accessibility
+              </span>
+              <div className="flex">{renderStars(foodInfo.access_review)}</div>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-sm font-medium text-gray-500">
+                Communication
+              </span>
+              <div className="flex">{renderStars(foodInfo.comm_review)}</div>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-sm font-medium text-gray-500">Quality</span>
+              <div className="flex">{renderStars(foodInfo.quality_review)}</div>
+            </div>
           </div>
         </CardContent>
         <Separator className="my-4" />

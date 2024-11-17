@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { StarIcon } from "lucide-react";
 import { submitReviewFoodAction } from "@/app/actions";
 import { StarFilledIcon } from "@radix-ui/react-icons";
+import { toast } from "sonner";
 
 const ReviewStar = ({ filled, onClick }) => (
   <StarFilledIcon
@@ -49,8 +50,8 @@ export function FoodReview({ foodInfo }) {
       return;
     }
 
-    await submitReviewFoodAction(reviews, foodInfo.uuid);
-
+    await submitReviewFoodAction(reviews, foodInfo.id);
+    toast.success("Review submitted successfully");
     setIsOpen(false);
   };
 
@@ -77,7 +78,7 @@ export function FoodReview({ foodInfo }) {
                   {[1, 2, 3, 4, 5].map((star) => (
                     <ReviewStar
                       key={star}
-                      filled={skltar <= reviews[category]}
+                      filled={star <= reviews[category]}
                       onClick={() => handleStarClick(category, star)}
                     />
                   ))}

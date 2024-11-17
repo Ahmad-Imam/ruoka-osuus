@@ -8,9 +8,9 @@ export default function FoodReserve({ foodInfo }) {
     console.log("Reserve food");
 
     if (foodInfo?.status === "reserved") {
-      await reserveFoodAction(foodInfo.uuid, "available");
+      await reserveFoodAction(foodInfo.id, "available");
     } else {
-      await reserveFoodAction(foodInfo.uuid, "reserved");
+      await reserveFoodAction(foodInfo.id, "reserved");
     }
   }
 

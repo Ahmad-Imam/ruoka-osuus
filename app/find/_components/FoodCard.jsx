@@ -18,7 +18,7 @@ export default function FoodCard({ item }) {
         <p>Quantity: {item.amount}</p>
         <p>Category: {item.category}</p>
         <p>Expires: {item.expirationdate}</p>
-        <Link href={`/foodDetails/${item?.uuid}`} className="">
+        <Link href={`/foodDetails/${item?.id}`} className="">
           <Button className="my-4 ">Details</Button>
         </Link>
       </CardContent>
