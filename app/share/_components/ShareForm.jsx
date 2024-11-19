@@ -17,6 +17,7 @@ import FoodImage from "@/components/FoodImage";
 import { toast } from "sonner";
 import { deleteImage } from "@/supabase/storage/client";
 import { addFoodAction, getAllFoodAction } from "@/app/actions";
+import { useRouter } from "next/navigation";
 
 export default function ShareForm({ userData }) {
   const [formData, setFormData] = useState({
@@ -30,10 +31,13 @@ export default function ShareForm({ userData }) {
       latitude: "",
       longitude: "",
     },
+    contact: "",
     imageUrl: "",
     userId: userData?.id,
     status: "available",
   });
+
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,9 +50,11 @@ export default function ShareForm({ userData }) {
     // );
 
     const newFood = await addFoodAction(formData);
+    console.log("newFood");
     console.log(newFood);
-    const allFood = await getAllFoodAction();
-    console.log(allFood);
+    router.push(`/foodDetails/${newFood.data[0].id}`);
+    // const allFood = await getAllFoodAction();
+    // console.log(allFood);
 
     // Reset form or show success message
   };
@@ -126,7 +132,17 @@ export default function ShareForm({ userData }) {
         </div>
 
         <FoodImage setFormData={setFormData} />
-
+        <div>
+          <Label htmlFor="contact">Contact</Label>
+          <Input
+            id="contact"
+            name="contact"
+            placeholder="Phone number or email"
+            value={formData.contact}
+            onChange={handleChange}
+            required
+          />
+        </div>
         <ShareAddress setFormData={setFormData} />
 
         <Button type="submit">Share Food</Button>

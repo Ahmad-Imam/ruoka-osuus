@@ -13,27 +13,45 @@ export function getFoodById(id) {
 export function addFood(formData) {
   const supabase = createClient();
   console.log("in addFood");
-  return supabase.from("food").insert(formData);
+  return supabase.from("food").upsert(formData).select();
 }
 
 //change food status to reserved
-export function reserveFood(id, newStatus) {
+export function reserveFood(id, newStatus, reserveId) {
+  // console.log(newStatus);
+  // console.log(reserveId);
   const supabase = createClient();
-  return supabase.from("food").update({ status: newStatus }).eq("id", id);
+
+  if (newStatus === "reserved") {
+    return supabase
+      .from("food")
+      .update({ status: newStatus, reserveId: reserveId })
+      .eq("id", id);
+  } else if (newStatus === "available") {
+    return supabase
+      .from("food")
+      .update({ status: newStatus, reserveId: null })
+      .eq("id", id);
+  } else if (newStatus === "completed") {
+    return supabase.from("food").update({ status: newStatus }).eq("id", id);
+  }
 }
 
 export async function getAllFoodFromLocation(location, radius) {
+  console.log("in getAllFoodFromLocation");
+  console.log(location?.lat);
+  console.log(location?.lng);
   const supabase = createClient();
   const { data, error } = await supabase.rpc("find_nearby_places", {
-    user_lat: location?.lat ?? 61.455761,
-    user_lng: location?.lng ?? 23.8450639,
+    user_lat: location?.lat,
+    user_lng: location?.lng,
     search_radius: radius ?? 10,
   });
   // console.log(data);
   return data;
 }
 
-export async function getFoodByUserId(userId) {
+export async function getDonatedFoodByUserId(userId) {
   const supabase = createClient();
 
   //get all food items by user id also sort by created date
@@ -42,6 +60,18 @@ export async function getFoodByUserId(userId) {
     .from("food")
     .select()
     .eq("userId", userId)
+    .order("created_at", { ascending: false });
+}
+
+export async function getReservedFoodByUserId(userId) {
+  const supabase = createClient();
+
+  //get all food items by user id also sort by created date
+
+  return supabase
+    .from("food")
+    .select()
+    .eq("reserveId", userId)
     .order("created_at", { ascending: false });
 }
 

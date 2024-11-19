@@ -1,5 +1,10 @@
 import { createClient } from "@/supabase/server";
 
+export function getLoggedInUser() {
+  const supabase = createClient();
+  return supabase.auth.getUser();
+}
+
 export function getUserById(id) {
   const supabase = createClient();
   return supabase.from("profiles").select().eq("id", id);

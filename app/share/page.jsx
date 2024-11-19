@@ -14,7 +14,7 @@ export default async function ShareFood() {
 
   return (
     <div className="min-h-screen w-full flex justify-center items-center flex-row">
-      <ShareForm userData={userData[0]} />
+      <ShareForm userData={userData && userData[0]} />
     </div>
   );
 }

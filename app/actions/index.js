@@ -53,8 +53,10 @@ export async function addFoodAction(formData) {
   // return supabaseServer.from("food").select();
 }
 
-export async function reserveFoodAction(id, newStatus) {
-  const { data, error } = await reserveFood(id, newStatus);
+export async function reserveFoodAction(id, newStatus, reserveId) {
+  // console.log("Reserve food action");
+  // console.log(reserveId);
+  const { data, error } = await reserveFood(id, newStatus, reserveId);
 
   revalidatePath("/foodDetails/" + id);
 
@@ -63,6 +65,7 @@ export async function reserveFoodAction(id, newStatus) {
 }
 
 export async function getAllFoodLocationAction(location, radius) {
+  // console.log(location);
   const allFoodLocation = await getAllFoodFromLocation(location, radius);
   // console.log(allFoodLocation);
   return allFoodLocation;

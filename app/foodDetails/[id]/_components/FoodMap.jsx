@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { useJsApiLoader } from "@react-google-maps/api";
 
 export default function FoodMap({ location }) {
-  console.log(location);
+  // console.log(location);
   const libs = ["places", "core", "maps", "marker"];
 
   const mapRef = useRef(null);
@@ -28,7 +28,7 @@ export default function FoodMap({ location }) {
         zoom: 14,
         mapId: "MY-MAP-ID-1234",
       };
-      console.log(mapOptions?.center);
+      // console.log(mapOptions?.center);
       const gMap = new google.maps.Map(mapRef.current, mapOptions);
 
       const marker = new google.maps.marker.AdvancedMarkerElement({

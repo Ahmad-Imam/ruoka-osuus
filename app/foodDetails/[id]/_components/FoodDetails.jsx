@@ -1,5 +1,10 @@
 import Image from "next/image";
-import { CalendarIcon, MapPinIcon, UserIcon } from "lucide-react";
+import {
+  CalendarIcon,
+  MapPinIcon,
+  UserCheck2Icon,
+  UserIcon,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,7 +21,12 @@ import Link from "next/link";
 import { FoodReview } from "./FoodReview";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 
-export default function FoodDetails({ foodInfo, foodUser }) {
+export default function FoodDetails({
+  foodInfo,
+  foodUser,
+  loggedUser,
+  reservedUser,
+}) {
   const renderStars = (rating) => {
     if (rating === null) return "No reviews yet";
     return Array(5)
@@ -33,6 +43,13 @@ export default function FoodDetails({ foodInfo, foodUser }) {
 
   // console.log(foodUser);
   // console.log(foodInfo);
+
+  const isLoggedUserReservedUser = reservedUser?.id === loggedUser?.id;
+  // console.log(loggedUser);
+  // console.log(reservedUser);
+  console.log("isLoggedUserReservedUser");
+  console.log(isLoggedUserReservedUser);
+
   return (
     <div className="min-h-screen bg-white p-4 md:p-8">
       <Card className="max-w-3xl mx-auto">
@@ -53,24 +70,32 @@ export default function FoodDetails({ foodInfo, foodUser }) {
               >
                 {foodInfo.status}
               </Badge>
-              {foodInfo?.access_review === 0 && (
+              {isLoggedUserReservedUser && foodInfo?.access_review === 0 && (
                 <FoodReview foodInfo={foodInfo} />
               )}
             </div>
           </div>
         </CardHeader>
         <CardContent className="space-y-6">
-          <Image
-            src={foodInfo?.imageUrl}
-            alt={foodInfo?.title}
-            width={400}
-            height={300}
-            className="w-full h-64 object-cover rounded-md"
-          />
+          {foodInfo?.imageUrl && (
+            <Image
+              src={foodInfo?.imageUrl}
+              alt={foodInfo?.title}
+              width={400}
+              height={300}
+              className="w-full h-64 object-cover rounded-md"
+            />
+          )}
 
-          <div>
-            <h3 className="font-semibold mb-2">Description</h3>
-            <p className="text-sm text-gray-600">{foodInfo.description}</p>
+          <div className="grid grid-cols-2 gap-4 text-sm">
+            <div>
+              <h3 className="font-semibold mb-2">Description</h3>
+              <p className="text-sm text-gray-600">{foodInfo.description}</p>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-2">Contact</h3>
+              <p className="text-sm text-gray-600">{foodInfo.contact}</p>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4 text-sm">
@@ -97,13 +122,25 @@ export default function FoodDetails({ foodInfo, foodUser }) {
           <div>
             <h3 className="font-semibold mb-2">Shared by</h3>
             <Link href={`/user/${foodInfo.userId}`}>
-              <p className="text-sm flex items-center">
-                <UserIcon className="w-4 h-4 mr-1" />
-                User ID: {foodUser?.full_name}
-                {foodInfo.userId}
+              <p className="text-sm flex items-center font-bold">
+                <UserIcon className="w-6 h-6 mr-1" />
+                {foodUser?.full_name}
+                {/* {foodInfo.userId} */}
               </p>
             </Link>
           </div>
+          {reservedUser && (
+            <div>
+              <h3 className="font-semibold mb-2">Reserved by</h3>
+              <Link href={`/user/${reservedUser?.id}`}>
+                <p className="text-sm flex items-center font-bold">
+                  <UserCheck2Icon className="w-6 h-6 mr-1 text-green-500" />
+                  {reservedUser?.full_name}
+                  {/* {foodInfo.userId} */}
+                </p>
+              </Link>
+            </div>
+          )}
 
           <div className="space-y-2">
             <h3 className="font-semibold mb-2">Rating:</h3>
@@ -128,7 +165,11 @@ export default function FoodDetails({ foodInfo, foodUser }) {
         <Separator className="my-4" />
         <CardFooter className="flex justify-between">
           <div></div>
-          <FoodReserve foodInfo={foodInfo} />
+          <FoodReserve
+            foodInfo={foodInfo}
+            foodUser={foodUser}
+            loggedUser={loggedUser}
+          />
         </CardFooter>
       </Card>
     </div>

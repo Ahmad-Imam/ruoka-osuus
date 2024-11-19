@@ -40,7 +40,7 @@ const mockFoodItems = [
   },
 ];
 
-export default function FoodList({ allFood }) {
+export default function FoodList({ allFood, userRadius }) {
   // console.log(allFood);
   const [searchTerm, setSearchTerm] = useState("");
   const [foodItems, setFoodItems] = useState(allFood);
@@ -76,7 +76,12 @@ export default function FoodList({ allFood }) {
       );
     }
 
-    const newFoodList = await getAllFoodLocationAction();
+    const newFoodList = await getAllFoodLocationAction(
+      currentLocation,
+      userRadius
+    );
+    console.log(currentLocation);
+    console.log(newFoodList);
 
     setFoodItems(newFoodList);
   }
@@ -105,7 +110,7 @@ export default function FoodList({ allFood }) {
         </div>
       </form>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {foodItems.map((item) => (
+        {foodItems?.map((item) => (
           <FoodCard item={item} key={item?.id} />
         ))}
       </div>

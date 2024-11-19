@@ -4,21 +4,117 @@ import React, { useState } from "react";
 import { ModeToggle } from "./ModeToggle";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Button } from "./ui/button";
-import { Menu } from "lucide-react";
+import { ChevronDownIcon, Menu } from "lucide-react";
 import LoginOut from "./LoginOut";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <header className="sticky top-0 border-b h-14 flex justify-between items-center px-20 bg-slate-200 dark:bg-slate-800 dark:text-white">
+    <header className="sticky top-0 border-b h-14 flex justify-between items-center px-20 bg-slate-200 dark:bg-slate-800 dark:text-white z-50">
       <div className="mr-4 hidden md:flex">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <span className="hidden font-bold sm:inline-block">FoodShare</span>
         </Link>
         <nav className="flex items-center space-x-6 text-sm font-medium">
           <Link href="/about">About</Link>
-          <Link href="/share">Share Food</Link>
-          <Link href="/find">Find Food</Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <div className="flex flex-row justify-between items-center cursor-pointer hover:underline">
+                <button
+                  // variant="link"
+                  className="text-sm font-semibold md:text-sm flex items-center gap-2"
+                >
+                  {/* <Image
+                  src={loggedUser?.avatar_url}
+                  width={30}
+                  height={30}
+                  alt="user-image"
+                  className="rounded-full"
+                  prefetch="true"
+                /> */}
+                  Create
+                </button>
+                <ChevronDownIcon className="ml-1 h-4 w-4" />
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="start"
+              className="bg-slate-100 dark:bg-slate-900"
+            >
+              <DropdownMenuItem>
+                <Link
+                  href="/share"
+                  className=" hover:underline p-1 md:text-sm w-full text-center"
+                  prefetch={false}
+                  // onClick={handleLogout}
+                >
+                  Donation
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link
+                  href="/share"
+                  className=" hover:underline p-1 md:text-sm w-full text-center"
+                  prefetch={false}
+                  // onClick={handleLogout}
+                >
+                  Request
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <div className="flex flex-row justify-between items-center cursor-pointer hover:underline">
+                <button
+                  // variant="link"
+                  className="text-sm font-semibold md:text-sm flex items-center gap-2"
+                >
+                  {/* <Image
+                  src={loggedUser?.avatar_url}
+                  width={30}
+                  height={30}
+                  alt="user-image"
+                  className="rounded-full"
+                  prefetch="true"
+                /> */}
+                  Find
+                </button>
+                <ChevronDownIcon className="ml-1 h-4 w-4" />
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="start"
+              className="bg-slate-100 dark:bg-slate-900"
+            >
+              <DropdownMenuItem>
+                <Link
+                  href="/find"
+                  className=" hover:underline p-1 md:text-sm w-full text-center"
+                  prefetch={false}
+                  // onClick={handleLogout}
+                >
+                  Donations
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link
+                  href="/find"
+                  className=" hover:underline p-1 md:text-sm w-full text-center"
+                  prefetch={false}
+                  // onClick={handleLogout}
+                >
+                  Requests
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
       </div>
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
