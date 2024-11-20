@@ -7,6 +7,9 @@ import ProfileRadius from "./ProfileRadius";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import DonatedFood from "./DonatedFood";
+import ReceivedFood from "./ReceivedFood";
+import RequestedFood from "./RequestedFood";
 
 // Mock data for food history
 const donatedFood = [
@@ -40,6 +43,7 @@ export default function UserProfile({
   donatedFoodList,
   reviews,
   reservedFoodList,
+  requestData,
 }) {
   // Mock data for user profile
   console.log(reservedFoodList?.length);
@@ -101,80 +105,42 @@ export default function UserProfile({
             </div>
 
             <div className="mt-8">
-              <Tabs defaultValue="donated" className="w-full">
+              <Tabs defaultValue="donation" className="w-full">
                 <TabsList className="grid w-full grid-cols-2">
-                  <TabsTrigger value="donated">Donated Food</TabsTrigger>
-                  <TabsTrigger value="received">Received Food</TabsTrigger>
+                  <TabsTrigger value="donation">Donations</TabsTrigger>
+                  <TabsTrigger value="request">Requests</TabsTrigger>
                 </TabsList>
-                <TabsContent value="donated" className="mt-4">
-                  <ul className="space-y-2">
-                    <div className="flex items-center justify-between p-3">
-                      {/* <p>title</p>
-                      <p>Expired Date</p>
-                      <p>Amount</p> */}
-                    </div>
-                    {donatedFoodList?.length !== 0 ? (
-                      donatedFoodList.map((item) => (
-                        <Link
-                          href={`/foodDetails/${item.id}`}
-                          key={item.id}
-                          className="bg-gray-50 p-3 rounded-md flex justify-between items-center"
-                        >
-                          <div className="font-medium text-gray-900 w-10">
-                            {item.title}
-                          </div>
-
-                          <div className="text-sm text-gray-600 ">
-                            {item.expirationdate}
-                          </div>
-
-                          <div className="text-sm text-gray-600 ">
-                            {item.amount}
-                          </div>
-                        </Link>
-                      ))
-                    ) : (
-                      <p className="text-center text-gray-500 text-lg py-4">
-                        You have not donated any food yet.
-                      </p>
-                    )}
-                  </ul>
+                <TabsContent value="donation" className="mt-4">
+                  <Tabs defaultValue="donated" className="w-full">
+                    <TabsList className="grid w-full grid-cols-2">
+                      <TabsTrigger value="donated">Donated</TabsTrigger>
+                      <TabsTrigger value="received">Reserved</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="donated" className="mt-4">
+                      <DonatedFood donatedFoodList={donatedFoodList} />
+                    </TabsContent>
+                    <TabsContent value="received" className="mt-4">
+                      <ReceivedFood reservedFoodList={reservedFoodList} />
+                    </TabsContent>
+                  </Tabs>
                 </TabsContent>
-                <TabsContent value="received" className="mt-4">
-                  <ul className="space-y-2">
-                    {reservedFoodList?.length !== 0 ? (
-                      reservedFoodList.map((item) => (
-                        <Link
-                          href={`/foodDetails/${item.id}`}
-                          key={item.id}
-                          className="bg-gray-50 p-3 rounded-md flex justify-between items-center"
-                        >
-                          <div className="font-medium text-gray-900 w-10">
-                            {item.title}
-                          </div>
-
-                          <div className="text-sm text-gray-600 ">
-                            {item.expirationdate}
-                          </div>
-
-                          <div className="text-sm text-gray-600 ">
-                            {item.amount}
-                          </div>
-                          {item?.access_review === 0 && (
-                            <Badge className="text-sm text-yellow-500 bg-gray-200">
-                              Awaiting Review
-                            </Badge>
-                          )}
-                        </Link>
-                      ))
-                    ) : (
-                      <p className="text-center text-gray-500 text-lg py-4">
-                        You have not saved any food yet.
-                      </p>
-                    )}
-                  </ul>
+                <TabsContent value="request" className="mt-4">
+                  <RequestedFood requestData={requestData} />
                 </TabsContent>
               </Tabs>
+
+              {/* <Tabs defaultValue="donated" className="w-full">
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="donated">Donated</TabsTrigger>
+                  <TabsTrigger value="received">Received</TabsTrigger>
+                </TabsList>
+                <TabsContent value="donated" className="mt-4">
+                  <DonatedFood donatedFoodList={donatedFoodList} />
+                </TabsContent>
+                <TabsContent value="received" className="mt-4">
+                  <ReceivedFood reservedFoodList={reservedFoodList} />
+                </TabsContent>
+              </Tabs> */}
             </div>
           </CardContent>
         </Card>

@@ -6,6 +6,7 @@ import {
   getReservedFoodByUserId,
 } from "@/queries/food";
 import { getAvgReviews } from "@/lib/utils";
+import { getRequestsByUserId } from "@/queries/request";
 
 export default async function ProfilePage({ params }) {
   console.log(params);
@@ -19,6 +20,10 @@ export default async function ProfilePage({ params }) {
   const { data: reservedFoodList, error: reservedFoodError } =
     await getReservedFoodByUserId(params.id);
   // console.log(reservedFoodList);
+
+  const { data: requestData, error: requestError } = await getRequestsByUserId(
+    params.id
+  );
 
   const { data: reviewData, error: reviewError } = await getReviewsFromFood(
     params.id
@@ -36,6 +41,7 @@ export default async function ProfilePage({ params }) {
         donatedFoodList={donatedFoodList}
         reservedFoodList={reservedFoodList}
         reviews={reviews}
+        requestData={requestData}
       />
     </div>
   );

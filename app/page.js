@@ -31,7 +31,7 @@ export default function Home() {
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <Link href="/find">
+                <Link href="/find/donation">
                   Find Food <Search className="ml-2 h-5 w-5" />
                 </Link>
               </Button>

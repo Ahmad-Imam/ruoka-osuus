@@ -7,6 +7,7 @@ import {
   reserveFood,
   submitReviewFood,
 } from "@/queries/food";
+import { addRequest, getAllRequestFromLocation } from "@/queries/request";
 import { setUserRadius } from "@/queries/user";
 import { createClient } from "@/supabase/server";
 import { revalidatePath } from "next/cache";
@@ -84,4 +85,19 @@ export async function setUserRadiusAction(userId, radius) {
   revalidatePath("/user/" + userId);
 
   // return data;
+}
+
+export async function addRequestAction(formData) {
+  const newReq = await addRequest(formData);
+  // console.log(allFood);
+  return newReq;
+  // return supabaseServer.from("food").select();
+}
+
+export async function getAllRequestLocationAction(location, radius) {
+  // console.log(location);
+  const allFoodLocation = await getAllRequestFromLocation(location, radius);
+  // console.log(allFoodLocation);
+  return allFoodLocation;
+  // return supabaseServer.from("food").select();
 }

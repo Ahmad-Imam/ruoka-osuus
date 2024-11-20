@@ -44,8 +44,9 @@ export default function FoodList({ allFood, userRadius }) {
   // console.log(allFood);
   const [searchTerm, setSearchTerm] = useState("");
   const [foodItems, setFoodItems] = useState(allFood);
-  const [currentLocation, setCurrentLocation] = useState({ lat: 0, lng: 0 });
   // console.log(currentLocation);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -61,29 +62,31 @@ export default function FoodList({ allFood, userRadius }) {
   };
 
   async function handleMyLocationClick() {
-    console.log("clicked");
-
+    // console.log("clicked");
+    setLoading(true);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setCurrentLocation({
+        async (position) => {
+          const newLocation = {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
-          });
+          };
+          // setCurrentLocation(newLocation);
+          setError(null);
+          const newFoodList = await getAllFoodLocationAction(
+            newLocation,
+            userRadius
+          );
+          console.log(newLocation);
+          console.log(newFoodList);
+
+          setFoodItems(newFoodList);
+          setLoading(false);
         },
-        (error) => console.error("Error getting location:", error),
+        (error) => setError(error),
         { enableHighAccuracy: true }
       );
     }
-
-    const newFoodList = await getAllFoodLocationAction(
-      currentLocation,
-      userRadius
-    );
-    console.log(currentLocation);
-    console.log(newFoodList);
-
-    setFoodItems(newFoodList);
   }
 
   return (
@@ -110,9 +113,16 @@ export default function FoodList({ allFood, userRadius }) {
         </div>
       </form>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {foodItems?.map((item) => (
-          <FoodCard item={item} key={item?.id} />
-        ))}
+        {error && <p>{error.message}</p>}
+        {loading ? (
+          <p className="text-center text-gray-500 text-lg mt-4">Loading...</p>
+        ) : foodItems?.length === 0 ? (
+          <p className="text-center text-gray-500 text-lg mt-4">
+            No items found in your current location.
+          </p>
+        ) : (
+          foodItems?.map((item) => <FoodCard item={item} key={item?.id} />)
+        )}
       </div>
     </div>
   );
