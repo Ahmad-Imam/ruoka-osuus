@@ -59,7 +59,7 @@ export async function reserveFoodAction(id, newStatus, reserveId) {
   // console.log(reserveId);
   const { data, error } = await reserveFood(id, newStatus, reserveId);
 
-  revalidatePath("/foodDetails/" + id);
+  revalidatePath("/details/donation/" + id);
 
   console.log("Reserve food");
   return data;
@@ -76,7 +76,7 @@ export async function getAllFoodLocationAction(location, radius) {
 export async function submitReviewFoodAction(reviewData, foodId) {
   const newFood = await submitReviewFood(reviewData, foodId);
   console.log("Review submitted");
-  revalidatePath("/foodDetails/" + foodId);
+  revalidatePath("/details/donation/" + foodId);
   return newFood;
 }
 

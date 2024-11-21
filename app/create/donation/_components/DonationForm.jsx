@@ -19,7 +19,7 @@ import { deleteImage } from "@/supabase/storage/client";
 import { addFoodAction, getAllFoodAction } from "@/app/actions";
 import { useRouter } from "next/navigation";
 
-export default function ShareForm({ userData }) {
+export default function DonationForm({ userData }) {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -33,7 +33,7 @@ export default function ShareForm({ userData }) {
     },
     contact: "",
     imageUrl: "",
-    userId: userData?.id,
+    userid: userData?.id,
     status: "available",
   });
 
@@ -52,7 +52,7 @@ export default function ShareForm({ userData }) {
     const newFood = await addFoodAction(formData);
     console.log("newFood");
     console.log(newFood);
-    router.push(`/foodDetails/${newFood.data[0].id}`);
+    router.push(`/details/donation/${newFood.data[0].id}`);
     // const allFood = await getAllFoodAction();
     // console.log(allFood);
 

@@ -25,12 +25,12 @@ export function reserveFood(id, newStatus, reserveId) {
   if (newStatus === "reserved") {
     return supabase
       .from("food")
-      .update({ status: newStatus, reserveId: reserveId })
+      .update({ status: newStatus, reserveid: reserveId })
       .eq("id", id);
   } else if (newStatus === "available") {
     return supabase
       .from("food")
-      .update({ status: newStatus, reserveId: null })
+      .update({ status: newStatus, reserveid: null })
       .eq("id", id);
   } else if (newStatus === "completed") {
     return supabase.from("food").update({ status: newStatus }).eq("id", id);
@@ -59,7 +59,7 @@ export async function getDonatedFoodByUserId(userId) {
   return supabase
     .from("food")
     .select()
-    .eq("userId", userId)
+    .eq("userid", userId)
     .order("created_at", { ascending: false });
 }
 
@@ -71,7 +71,7 @@ export async function getReservedFoodByUserId(userId) {
   return supabase
     .from("food")
     .select()
-    .eq("reserveId", userId)
+    .eq("reserveid", userId)
     .order("created_at", { ascending: false });
 }
 

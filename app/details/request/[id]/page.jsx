@@ -10,7 +10,7 @@ export default async function RequestDetailsPage({ params }) {
   const { data, error } = await getRequestById(id);
 
   const { data: userData, error: userError } = await getUserById(
-    data[0].userId
+    data[0].userid
   );
 
   // console.log(userData);

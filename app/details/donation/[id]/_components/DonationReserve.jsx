@@ -16,8 +16,8 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-export default function FoodReserve({ foodInfo, foodUser, loggedUser }) {
-  const isLoggedUserFoodOwner = foodInfo?.userId === loggedUser?.id;
+export default function DonationReserve({ foodInfo, foodUser, loggedUser }) {
+  const isLoggedUserFoodOwner = foodInfo?.userid === loggedUser?.id;
   console.log(isLoggedUserFoodOwner);
   // console.log(loggedUser?.id);
   async function handleReserveClick() {

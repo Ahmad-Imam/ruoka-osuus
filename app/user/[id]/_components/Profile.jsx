@@ -80,23 +80,17 @@ export default function UserProfile({
               <div className="flex items-center space-x-2"></div>
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-gray-500">
-                    Accessibility
-                  </span>
+                  <span className="text-sm font-medium ">Accessibility</span>
                   <div className="flex">
                     {renderStars(reviews.access_review)}
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-gray-500">
-                    Communication
-                  </span>
+                  <span className="text-sm font-medium ">Communication</span>
                   <div className="flex">{renderStars(reviews.comm_review)}</div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-gray-500">
-                    Quality
-                  </span>
+                  <span className="text-sm font-medium ">Quality</span>
                   <div className="flex">
                     {renderStars(reviews.quality_review)}
                   </div>

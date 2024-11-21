@@ -1,8 +1,8 @@
 import { createClient } from "@/supabase/server";
-import ShareForm from "./_components/ShareForm";
+import DonationForm from "./_components/DonationForm";
 import { getUserById } from "@/queries/user";
 
-export default async function ShareFood() {
+export default async function DonationFoodPage() {
   const supabaseServer = createClient();
 
   const { data, error } = await supabaseServer.auth.getUser();
@@ -14,7 +14,7 @@ export default async function ShareFood() {
 
   return (
     <div className="min-h-screen w-full flex justify-center items-center flex-row">
-      <ShareForm userData={userData && userData[0]} />
+      <DonationForm userData={userData && userData[0]} />
     </div>
   );
 }

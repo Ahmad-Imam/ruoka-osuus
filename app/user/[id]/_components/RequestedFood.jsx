@@ -24,7 +24,7 @@ export default function RequestedFood({ requestData }) {
           </Link>
         ))
       ) : (
-        <p className="text-center text-gray-500 text-lg py-4">
+        <p className="text-center  text-lg py-4">
           You have not donated any food yet.
         </p>
       )}

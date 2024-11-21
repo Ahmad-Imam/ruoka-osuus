@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useJsApiLoader } from "@react-google-maps/api";
 
-export default function FoodMap({ location }) {
+export default function DonationMap({ location }) {
   // console.log(location);
   const libs = ["places", "core", "maps", "marker"];
 

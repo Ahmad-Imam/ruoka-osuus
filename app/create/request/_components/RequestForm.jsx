@@ -33,7 +33,7 @@ export default function RequestForm({ userData }) {
       longitude: "",
     },
     contact: "",
-    userId: userData?.id,
+    userid: userData?.id,
   });
 
   const router = useRouter();

@@ -15,13 +15,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import FoodMap from "./FoodMap";
-import FoodReserve from "./FoodReserve";
+import DonationMap from "./DonationMap";
+import DonationReserve from "./DonationReserve";
 import Link from "next/link";
-import { FoodReview } from "./FoodReview";
+import { DonationReview } from "./DonationReview";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 
-export default function FoodDetails({
+export default function DonationDetails({
   foodInfo,
   foodUser,
   loggedUser,
@@ -71,7 +71,7 @@ export default function FoodDetails({
                 {foodInfo.status}
               </Badge>
               {isLoggedUserReservedUser && foodInfo?.access_review === 0 && (
-                <FoodReview foodInfo={foodInfo} />
+                <DonationReview foodInfo={foodInfo} />
               )}
             </div>
           </div>
@@ -117,15 +117,14 @@ export default function FoodDetails({
               <MapPinIcon className="w-4 h-4 mr-1 mt-1 flex-shrink-0" />
               {foodInfo.address}
             </p>
-            <FoodMap location={foodInfo.location} />
+            <DonationMap location={foodInfo.location} />
           </div>
           <div>
             <h3 className="font-semibold mb-2">Shared by</h3>
-            <Link href={`/user/${foodInfo.userId}`}>
+            <Link href={`/user/${foodInfo.userid}`}>
               <p className="text-sm flex items-center font-bold">
                 <UserIcon className="w-6 h-6 mr-1" />
                 {foodUser?.full_name}
-                {/* {foodInfo.userId} */}
               </p>
             </Link>
           </div>
@@ -136,7 +135,6 @@ export default function FoodDetails({
                 <p className="text-sm flex items-center font-bold">
                   <UserCheck2Icon className="w-6 h-6 mr-1 text-green-500" />
                   {reservedUser?.full_name}
-                  {/* {foodInfo.userId} */}
                 </p>
               </Link>
             </div>
@@ -145,19 +143,15 @@ export default function FoodDetails({
           <div className="space-y-2">
             <h3 className="font-semibold mb-2">Rating:</h3>
             <div className="flex justify-between items-center">
-              <span className="text-sm font-medium text-gray-500">
-                Accessibility
-              </span>
+              <span className="text-sm font-medium ">Accessibility</span>
               <div className="flex">{renderStars(foodInfo.access_review)}</div>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm font-medium text-gray-500">
-                Communication
-              </span>
+              <span className="text-sm font-medium ">Communication</span>
               <div className="flex">{renderStars(foodInfo.comm_review)}</div>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm font-medium text-gray-500">Quality</span>
+              <span className="text-sm font-medium ">Quality</span>
               <div className="flex">{renderStars(foodInfo.quality_review)}</div>
             </div>
           </div>
@@ -165,7 +159,7 @@ export default function FoodDetails({
         <Separator className="my-4" />
         <CardFooter className="flex justify-between">
           <div></div>
-          <FoodReserve
+          <DonationReserve
             foodInfo={foodInfo}
             foodUser={foodUser}
             loggedUser={loggedUser}

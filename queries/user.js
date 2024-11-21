@@ -18,7 +18,7 @@ export async function getReviewsFromFood(userId) {
   return supabase
     .from("food")
     .select()
-    .eq("userId", userId)
+    .eq("userid", userId)
     .neq("quality_review", 0);
 }
 

@@ -16,7 +16,7 @@ export function getRequestsByUserId(userId) {
   return supabase
     .from("request")
     .select()
-    .eq("userId", userId)
+    .eq("userid", userId)
     .order("created_at", { ascending: false });
 }
 

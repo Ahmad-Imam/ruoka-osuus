@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 
-export default function FoodCard({ item }) {
+export default function DonationCard({ item }) {
   // console.log(item);
   return (
     <Card>
@@ -18,7 +18,7 @@ export default function FoodCard({ item }) {
         <p>Quantity: {item.amount}</p>
         <p>Category: {item.category}</p>
         <p>Expires: {item.expirationdate}</p>
-        <Link href={`/foodDetails/${item?.id}`} className="">
+        <Link href={`/details/donation/${item?.id}`} className="">
           <Button className="my-4 ">Details</Button>
         </Link>
       </CardContent>

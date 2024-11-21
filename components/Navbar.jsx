@@ -56,7 +56,7 @@ export default function Navbar() {
             >
               <DropdownMenuItem>
                 <Link
-                  href="/share"
+                  href="/create/donation"
                   className=" hover:underline p-1 md:text-sm w-full text-center"
                   prefetch={false}
                   // onClick={handleLogout}
@@ -66,7 +66,7 @@ export default function Navbar() {
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Link
-                  href="/request"
+                  href="/create/request"
                   className=" hover:underline p-1 md:text-sm w-full text-center"
                   prefetch={false}
                   // onClick={handleLogout}
@@ -143,10 +143,13 @@ export default function Navbar() {
 
               {isShareOpen && (
                 <div className="flex flex-col pl-4 py-2 gap-2">
-                  <Link href="/share/donation" onClick={() => setIsOpen(false)}>
+                  <Link
+                    href="/create/donation"
+                    onClick={() => setIsOpen(false)}
+                  >
                     Donation
                   </Link>
-                  <Link href="/share/request" onClick={() => setIsOpen(false)}>
+                  <Link href="/create/request" onClick={() => setIsOpen(false)}>
                     Request
                   </Link>
                 </div>

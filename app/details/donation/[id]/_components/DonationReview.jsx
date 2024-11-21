@@ -24,7 +24,7 @@ const ReviewStar = ({ filled, onClick }) => (
   />
 );
 
-export function FoodReview({ foodInfo }) {
+export function DonationReview({ foodInfo }) {
   const reviewCats = ["Ease of Access", "Communication", "Food Quality"];
   const [isOpen, setIsOpen] = useState(false);
   const [reviews, setReviews] = useState({

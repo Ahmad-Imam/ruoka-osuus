@@ -22,7 +22,7 @@ export default function ProfileRadius({ userData }) {
 
   return (
     <div className="flex items-center justify-between space-x-2">
-      <div className="text-sm font-medium text-gray-500">Radius</div>
+      <div className="text-sm font-medium ">Radius</div>
       {radiusEdit ? (
         <div className="flex items-center justify-center gap-2">
           <Input
@@ -32,7 +32,7 @@ export default function ProfileRadius({ userData }) {
             placeholder="Set radius"
             className="w-24"
           />
-          <span className="text-sm text-gray-500">km</span>
+          <span className="text-sm ">km</span>
           <Button onClick={handleRadiusSubmit} size="sm">
             Set
           </Button>

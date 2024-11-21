@@ -8,7 +8,7 @@ export default function ReceivedFood({ reservedFoodList }) {
       {reservedFoodList?.length !== 0 ? (
         reservedFoodList.map((item) => (
           <Link
-            href={`/foodDetails/${item.id}`}
+            href={`/details/donation/${item.id}`}
             key={item.id}
             className="bg-gray-50 p-3 rounded-md flex justify-between items-center"
           >
@@ -25,7 +25,7 @@ export default function ReceivedFood({ reservedFoodList }) {
           </Link>
         ))
       ) : (
-        <p className="text-center text-gray-500 text-lg py-4">
+        <p className="text-center  text-lg py-4">
           You have not saved any food yet.
         </p>
       )}

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import FoodCard from "./FoodCard";
+import DonationCard from "./DonationCard";
 import { getAllFoodLocationAction } from "@/app/actions";
 
 const mockFoodItems = [
@@ -40,7 +40,7 @@ const mockFoodItems = [
   },
 ];
 
-export default function FoodList({ allFood, userRadius }) {
+export default function DonationList({ allFood, userRadius }) {
   // console.log(allFood);
   const [searchTerm, setSearchTerm] = useState("");
   const [foodItems, setFoodItems] = useState(allFood);
@@ -115,13 +115,13 @@ export default function FoodList({ allFood, userRadius }) {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {error && <p>{error.message}</p>}
         {loading ? (
-          <p className="text-center text-gray-500 text-lg mt-4">Loading...</p>
+          <p className="text-center  text-lg mt-4">Loading...</p>
         ) : foodItems?.length === 0 ? (
-          <p className="text-center text-gray-500 text-lg mt-4">
+          <p className="text-center  text-lg mt-4">
             No items found in your current location.
           </p>
         ) : (
-          foodItems?.map((item) => <FoodCard item={item} key={item?.id} />)
+          foodItems?.map((item) => <DonationCard item={item} key={item?.id} />)
         )}
       </div>
     </div>

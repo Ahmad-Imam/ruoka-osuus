@@ -19,14 +19,14 @@ export default function LoginOut() {
   const supabase = supabaseBrowser();
 
   const [loggedUser, setLoggedUser] = useState(null);
-  // console.log(loggedUser);
+  console.log(loggedUser);
 
   //   console.log(supabase.auth.getUser());
 
   useEffect(() => {
     async function fetchUser() {
       const { data, error } = await supabase.auth.getUser();
-      setLoggedUser(data?.user?.user_metadata);
+      setLoggedUser(data?.user);
       //   console.log(user);
     }
 
@@ -54,7 +54,7 @@ export default function LoginOut() {
 
   return (
     <div className="">
-      {loggedUser?.name ? (
+      {loggedUser?.role === "authenticated" ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <div className="flex flex-row justify-between items-center cursor-pointer hover:underline">
@@ -70,7 +70,7 @@ export default function LoginOut() {
                   className="rounded-full"
                   prefetch="true"
                 /> */}
-                {loggedUser?.name}
+                {loggedUser?.user_metadata?.name}
               </button>
               <ChevronDownIcon className="ml-1 h-4 w-4" />
             </div>
@@ -80,8 +80,18 @@ export default function LoginOut() {
             className="bg-slate-100 dark:bg-slate-900"
           >
             <DropdownMenuItem>
+              <Link
+                href={`/user/${loggedUser?.user?.id}`}
+                passHref
+                className="w-full text-center hover:underline p-1 md:text-lg"
+                prefetch={false}
+              >
+                Profile
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
               <button
-                className="w-full  hover:underline p-1 md:text-lg"
+                className="w-full hover:underline p-1 md:text-lg"
                 prefetch={false}
                 onClick={handleLogout}
               >

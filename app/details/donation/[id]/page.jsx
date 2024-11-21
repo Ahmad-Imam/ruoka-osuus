@@ -1,15 +1,15 @@
 import React from "react";
-import FoodDetails from "./_components/FoodDetails";
+import DonationDetails from "./_components/DonationDetails";
 import { getFoodById } from "@/queries/food";
 import { getLoggedInUser, getUserById } from "@/queries/user";
 
-export default async function FoodDetailsPage({ params }) {
+export default async function DonationDetailsPage({ params }) {
   const { id } = params;
 
   const { data, error } = await getFoodById(id);
 
   const { data: userData, error: userError } = await getUserById(
-    data[0].userId
+    data[0].userid
   );
 
   // console.log(userData);
@@ -31,12 +31,12 @@ export default async function FoodDetailsPage({ params }) {
   // console.log(loggedUser);
 
   const { data: reservedUser, error: reservedUserError } = await getUserById(
-    data[0]?.reserveId
+    data[0]?.reserveid
   );
 
   return (
     <div>
-      <FoodDetails
+      <DonationDetails
         foodInfo={data[0]}
         foodUser={userData[0]}
         reservedUser={reservedUser && reservedUser[0]}
