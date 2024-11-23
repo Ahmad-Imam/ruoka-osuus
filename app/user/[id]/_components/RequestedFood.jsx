@@ -18,7 +18,7 @@ export default function RequestedFood({ requestData }) {
           >
             <div className="font-medium text-gray-900 w-10">{item.title}</div>
 
-            <div className="text-sm text-gray-600 ">
+            <div className="text-sm  ">
               {new Date(item.created_at).toLocaleDateString()}
             </div>
           </Link>

@@ -19,7 +19,7 @@ export default function LoginOut() {
   const supabase = supabaseBrowser();
 
   const [loggedUser, setLoggedUser] = useState(null);
-  console.log(loggedUser);
+  // console.log(loggedUser);
 
   //   console.log(supabase.auth.getUser());
 
@@ -81,7 +81,7 @@ export default function LoginOut() {
           >
             <DropdownMenuItem>
               <Link
-                href={`/user/${loggedUser?.user?.id}`}
+                href={`/user/${loggedUser?.id}`}
                 passHref
                 className="w-full text-center hover:underline p-1 md:text-lg"
                 prefetch={false}

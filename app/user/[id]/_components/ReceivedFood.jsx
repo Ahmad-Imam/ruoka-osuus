@@ -14,9 +14,9 @@ export default function ReceivedFood({ reservedFoodList }) {
           >
             <div className="font-medium text-gray-900 w-10">{item.title}</div>
 
-            <div className="text-sm text-gray-600 ">{item.expirationdate}</div>
+            <div className="text-sm  ">{item.expirationdate}</div>
 
-            <div className="text-sm text-gray-600 ">{item.amount}</div>
+            <div className="text-sm  ">{item.amount}</div>
             {item?.access_review === 0 && (
               <Badge className="text-sm text-yellow-500 bg-gray-200">
                 Awaiting Review

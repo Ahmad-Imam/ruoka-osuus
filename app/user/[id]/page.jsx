@@ -1,6 +1,10 @@
 import React from "react";
 import Profile from "./_components/Profile";
-import { getReviewsFromFood, getUserById } from "@/queries/user";
+import {
+  getLoggedInUser,
+  getReviewsFromFood,
+  getUserById,
+} from "@/queries/user";
 import {
   getDonatedFoodByUserId,
   getReservedFoodByUserId,
@@ -9,7 +13,7 @@ import { getAvgReviews } from "@/lib/utils";
 import { getRequestsByUserId } from "@/queries/request";
 
 export default async function ProfilePage({ params }) {
-  console.log(params);
+  // console.log(params);
 
   const { data: userData, error: userError } = await getUserById(params.id);
 
@@ -24,6 +28,16 @@ export default async function ProfilePage({ params }) {
   const { data: requestData, error: requestError } = await getRequestsByUserId(
     params.id
   );
+
+  // let isLoggedUser = false;
+
+  const { data, error } = await getLoggedInUser();
+  // console.log(data);
+
+  const isLoggedUser = data?.user
+    ? data?.user?.id.toString() === params.id.toString()
+    : false;
+  console.log(isLoggedUser);
 
   const { data: reviewData, error: reviewError } = await getReviewsFromFood(
     params.id
@@ -42,6 +56,7 @@ export default async function ProfilePage({ params }) {
         reservedFoodList={reservedFoodList}
         reviews={reviews}
         requestData={requestData}
+        isLoggedUser={isLoggedUser}
       />
     </div>
   );

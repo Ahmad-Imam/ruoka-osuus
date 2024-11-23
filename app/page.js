@@ -65,53 +65,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Impact Section */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">Our Impact</h2>
-            <div className="grid gap-8 md:grid-cols-3">
-              <ImpactCard
-                icon={<Users className="h-10 w-10 text-primary" />}
-                title="10,000+"
-                description="Active Users"
-              />
-              <ImpactCard
-                icon={<BarChart className="h-10 w-10 text-primary" />}
-                title="50,000 lbs"
-                description="Food Shared"
-              />
-              <ImpactCard
-                icon={<Globe className="h-10 w-10 text-primary" />}
-                title="100+"
-                description="Communities Served"
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* Testimonials Section */}
-        <section className="py-20 bg-muted">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">
-              What Our Users Say
-            </h2>
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              <TestimonialCard
-                quote="FoodShare has helped me reduce waste and connect with my neighbors. It's a win-win!"
-                author="Sarah J."
-              />
-              <TestimonialCard
-                quote="As a student, FoodShare has been a lifesaver. I've found great meals and made new friends."
-                author="Mike T."
-              />
-              <TestimonialCard
-                quote="I love how easy it is to share extra food. It feels great to help others in my community."
-                author="Emily R."
-              />
-            </div>
-          </div>
-        </section>
-
         {/* CTA Section */}
         <section className="py-20">
           <div className="container mx-auto px-4 text-center">
@@ -154,17 +107,6 @@ function ImpactCard({ icon, title, description }) {
       </CardHeader>
       <CardContent>
         <p>{description}</p>
-      </CardContent>
-    </Card>
-  );
-}
-
-function TestimonialCard({ quote, author }) {
-  return (
-    <Card>
-      <CardContent className="pt-6">
-        <p className="italic mb-4">"{quote}"</p>
-        <p className="font-semibold">- {author}</p>
       </CardContent>
     </Card>
   );

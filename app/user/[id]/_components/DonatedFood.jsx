@@ -18,9 +18,9 @@ export default function DonatedFood({ donatedFoodList }) {
           >
             <div className="font-medium text-gray-900 w-10">{item.title}</div>
 
-            <div className="text-sm text-gray-600 ">{item.expirationdate}</div>
+            <div className="text-sm  ">{item.expirationdate}</div>
 
-            <div className="text-sm text-gray-600 ">{item.amount}</div>
+            <div className="text-sm  ">{item.amount}</div>
           </Link>
         ))
       ) : (

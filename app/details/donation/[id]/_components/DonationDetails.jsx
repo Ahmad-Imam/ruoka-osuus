@@ -90,11 +90,11 @@ export default function DonationDetails({
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
               <h3 className="font-semibold mb-2">Description</h3>
-              <p className="text-sm text-gray-600">{foodInfo.description}</p>
+              <p className="text-sm ">{foodInfo.description}</p>
             </div>
             <div>
               <h3 className="font-semibold mb-2">Contact</h3>
-              <p className="text-sm text-gray-600">{foodInfo.contact}</p>
+              <p className="text-sm ">{foodInfo.contact}</p>
             </div>
           </div>
 

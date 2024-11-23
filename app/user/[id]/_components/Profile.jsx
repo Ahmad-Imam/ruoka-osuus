@@ -44,6 +44,7 @@ export default function UserProfile({
   reviews,
   reservedFoodList,
   requestData,
+  isLoggedUser,
 }) {
   // Mock data for user profile
   console.log(reservedFoodList?.length);
@@ -70,13 +71,13 @@ export default function UserProfile({
                 <h1 className="text-2xl font-bold text-gray-900">
                   {userData.full_name}
                 </h1>
-                <p className="text-gray-600">{userData.email}</p>
+                <p className="">{userData.email}</p>
               </div>
             </div>
           </CardHeader>
           <CardContent>
             <div className="mt-4 space-y-4">
-              <ProfileRadius userData={userData} />
+              <ProfileRadius userData={userData} isLoggedUser={isLoggedUser} />
               <div className="flex items-center space-x-2"></div>
               <div className="space-y-2">
                 <div className="flex justify-between items-center">

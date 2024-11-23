@@ -1,68 +1,55 @@
 "use client";
-import React, { useEffect } from "react";
-
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import DonationCard from "./DonationCard";
 import { getAllFoodLocationAction } from "@/app/actions";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
-const mockFoodItems = [
-  {
-    id: 1,
-    name: "Apples",
-    quantity: "5 lbs",
-    category: "Fruits",
-    expirationDate: "2023-06-30",
-  },
-  {
-    id: 2,
-    name: "Bread",
-    quantity: "2 loaves",
-    category: "Grains",
-    expirationDate: "2023-06-25",
-  },
-  {
-    id: 3,
-    name: "Milk",
-    quantity: "1 gallon",
-    category: "Dairy",
-    expirationDate: "2023-06-28",
-  },
-  {
-    id: 4,
-    name: "Carrots",
-    quantity: "2 lbs",
-    category: "Vegetables",
-    expirationDate: "2023-07-02",
-  },
+// Predefined category list
+const categories = [
+  "Fruits",
+  "Vegetables",
+  "Grains",
+  "Protein",
+  "Dairy",
+  "Other",
 ];
 
 export default function DonationList({ allFood, userRadius }) {
-  // console.log(allFood);
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchCategory, setSearchCategory] = useState("all");
   const [foodItems, setFoodItems] = useState(allFood);
-  // console.log(currentLocation);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
-    // Filter food items based on search term
-    if (searchTerm === "") {
+    if (
+      searchTerm === "" &&
+      (searchCategory === "" || searchCategory === "all")
+    ) {
       setFoodItems(allFood);
       return;
     }
-    const filteredItems = foodItems.filter((item) =>
-      item.title.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredItems = allFood.filter(
+      (item) =>
+        (item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          searchTerm === "") &&
+        (item.category.toLowerCase() === searchCategory.toLowerCase() ||
+          searchCategory === "all")
     );
     setFoodItems(filteredItems);
   };
 
   async function handleMyLocationClick() {
-    // console.log("clicked");
     setLoading(true);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -71,21 +58,32 @@ export default function DonationList({ allFood, userRadius }) {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
-          // setCurrentLocation(newLocation);
           setError(null);
           const newFoodList = await getAllFoodLocationAction(
             newLocation,
             userRadius
           );
-          console.log(newLocation);
-          console.log(newFoodList);
 
-          setFoodItems(newFoodList);
+          const filteredItems = newFoodList.filter(
+            (item) =>
+              (item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                searchTerm === "") &&
+              (item.category.toLowerCase() === searchCategory.toLowerCase() ||
+                searchCategory === "all")
+          );
+
+          setFoodItems(filteredItems);
           setLoading(false);
         },
-        (error) => setError(error),
+        (error) => {
+          setError(error);
+          setLoading(false);
+        },
         { enableHighAccuracy: true }
       );
+    } else {
+      setError(new Error("Geolocation is not supported by your browser"));
+      setLoading(false);
     }
   }
 
@@ -93,7 +91,7 @@ export default function DonationList({ allFood, userRadius }) {
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">Find Available Food</h1>
       <form onSubmit={handleSearch} className="mb-8">
-        <div className="flex gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           <div className="flex-grow">
             <Label htmlFor="search" className="sr-only">
               Search for food
@@ -106,19 +104,40 @@ export default function DonationList({ allFood, userRadius }) {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <Button type="submit">Search</Button>
-          <Button type="button" onClick={handleMyLocationClick}>
+          <div className="w-full sm:w-48">
+            <Select value={searchCategory} onValueChange={setSearchCategory}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Categories</SelectItem>
+                {categories.map((category) => (
+                  <SelectItem key={category} value={category}>
+                    {category}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <Button type="submit" className="w-full sm:w-auto">
+            Search
+          </Button>
+          <Button
+            type="button"
+            onClick={handleMyLocationClick}
+            className="w-full sm:w-auto"
+          >
             Nearby
           </Button>
         </div>
       </form>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {error && <p>{error.message}</p>}
+        {error && <p className="text-red-500 col-span-full">{error.message}</p>}
         {loading ? (
-          <p className="text-center  text-lg mt-4">Loading...</p>
+          <p className="text-center text-lg mt-4 col-span-full">Loading...</p>
         ) : foodItems?.length === 0 ? (
-          <p className="text-center  text-lg mt-4">
-            No items found in your current location.
+          <p className="text-center text-lg mt-4 col-span-full">
+            No items found matching your search criteria.
           </p>
         ) : (
           foodItems?.map((item) => <DonationCard item={item} key={item?.id} />)

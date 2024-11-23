@@ -39,11 +39,11 @@ export default function RequestDetails({ requestInfo, requestUser }) {
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
               <h3 className="font-semibold mb-2">Description</h3>
-              <p className="text-sm text-gray-600">{requestInfo.description}</p>
+              <p className="text-sm ">{requestInfo.description}</p>
             </div>
             <div>
               <h3 className="font-semibold mb-2">Contact</h3>
-              <p className="text-sm text-gray-600">{requestInfo.contact}</p>
+              <p className="text-sm ">{requestInfo.contact}</p>
             </div>
           </div>
 

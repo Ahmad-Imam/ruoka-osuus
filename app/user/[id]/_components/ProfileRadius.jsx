@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { setUserRadiusAction } from "@/app/actions";
 import { toast } from "sonner";
 
-export default function ProfileRadius({ userData }) {
+export default function ProfileRadius({ userData, isLoggedUser }) {
   const [radius, setRadius] = useState(userData?.radius || "");
   const [radiusEdit, setRadiusEdit] = useState(false);
 
@@ -40,9 +40,11 @@ export default function ProfileRadius({ userData }) {
       ) : (
         <div className="flex gap-2 items-center justify-center">
           <span>{radius} km</span>
-          <Button onClick={() => setRadiusEdit(true)} size="sm">
-            Edit
-          </Button>
+          {isLoggedUser && (
+            <Button onClick={() => setRadiusEdit(true)} size="sm">
+              Edit
+            </Button>
+          )}
         </div>
       )}
     </div>
