@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 
 export default function DonationCard({ item }) {
   // console.log(item);
@@ -11,7 +12,12 @@ export default function DonationCard({ item }) {
       <CardHeader>
         <CardTitle className="flex flex-row justify-between ">
           {item.title}
-          {item?.distance && <div>Distance: {item.distance.toFixed(2)} KM</div>}
+          <div className="flex gap-2 items-center justify-between">
+            <Badge variant="outline">{item.fstatus}</Badge>
+            {item?.distance && (
+              <div>Distance: {item.distance.toFixed(2)} KM</div>
+            )}
+          </div>
         </CardTitle>
       </CardHeader>
       <CardContent>

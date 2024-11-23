@@ -68,7 +68,7 @@ export default function DonationDetails({
                 variant="secondary"
                 className="text-sm uppercase  justify-center"
               >
-                {foodInfo.status}
+                {foodInfo.fstatus}
               </Badge>
               {isLoggedUserReservedUser && foodInfo?.access_review === 0 && (
                 <DonationReview foodInfo={foodInfo} />
@@ -156,15 +156,18 @@ export default function DonationDetails({
             </div>
           </div>
         </CardContent>
-        <Separator className="my-4" />
-        <CardFooter className="flex justify-between">
-          <div></div>
-          <DonationReserve
-            foodInfo={foodInfo}
-            foodUser={foodUser}
-            loggedUser={loggedUser}
-          />
-        </CardFooter>
+        {loggedUser && (
+          <>
+            <Separator className="my-4" />
+            <CardFooter className="flex justify-between">
+              <DonationReserve
+                foodInfo={foodInfo}
+                foodUser={foodUser}
+                loggedUser={loggedUser}
+              />
+            </CardFooter>
+          </>
+        )}
       </Card>
     </div>
   );

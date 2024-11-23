@@ -54,17 +54,9 @@ export default function FoodImage({ setFormData }) {
 
   return (
     <div className="flex justify-center items-center flex-col gap-8">
-      {/* <Image
-        src="https://higssmppvjoqahjxesne.supabase.co/storage/v1/object/public/dank-pics/b7579b8d-3734-4921-8005-57cd27b4bfd4.png"
-        width={300}
-        height={300}
-        alt={`img-dank`}
-      /> */}
-
       <input
         type="file"
         hidden
-        multiple
         ref={imageInputRef}
         onChange={handleImageChange}
         disabled={isPending}

@@ -101,8 +101,8 @@ export default function LoginOut() {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <button
-          onClick={handleLogin}
+        <Link
+          href="/login"
           className={
             "text-sm font-semibold transition-colors hover:text-foreground hover:underline md:text-lg"
           }
@@ -110,7 +110,7 @@ export default function LoginOut() {
           // prefetch={false}
         >
           Login
-        </button>
+        </Link>
       )}
     </div>
   );

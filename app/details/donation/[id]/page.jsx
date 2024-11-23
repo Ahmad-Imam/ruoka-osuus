@@ -9,7 +9,7 @@ export default async function DonationDetailsPage({ params }) {
   const { data, error } = await getFoodById(id);
 
   const { data: userData, error: userError } = await getUserById(
-    data[0].userid
+    data[0]?.userid
   );
 
   // console.log(userData);
@@ -28,7 +28,7 @@ export default async function DonationDetailsPage({ params }) {
   // ];
 
   const { data: loggedUser, error: loggedUserError } = await getLoggedInUser();
-  // console.log(loggedUser);
+  console.log(loggedUser);
 
   const { data: reservedUser, error: reservedUserError } = await getUserById(
     data[0]?.reserveid

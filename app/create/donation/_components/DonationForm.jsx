@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -18,6 +18,10 @@ import { toast } from "sonner";
 import { deleteImage } from "@/supabase/storage/client";
 import { addFoodAction, getAllFoodAction } from "@/app/actions";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+
+import { uploadImage } from "@/supabase/storage/client";
+import { convertBlobUrlToFile } from "@/lib/utils";
 
 export default function DonationForm({ userData }) {
   const [formData, setFormData] = useState({
@@ -34,25 +38,102 @@ export default function DonationForm({ userData }) {
     contact: "",
     imageUrl: "",
     userid: userData?.id,
-    status: "available",
+    fstatus: "available",
   });
 
   const router = useRouter();
 
+  const [imageUrls, setImageUrls] = useState(null);
+
+  const imageInputRef = useRef(null);
+
+  const handleImageChange = (e) => {
+    if (e.target.files) {
+      const filesArray = Array.from(e.target.files);
+      const fileSelected = filesArray[0];
+      const newImageUrls = filesArray.map((file) => URL.createObjectURL(file));
+
+      const newImageUrl = URL.createObjectURL(fileSelected);
+
+      setImageUrls(newImageUrl);
+    }
+  };
+
+  const [isPending, startTransition] = useTransition();
+
+  const handleClickUploadImagesButton = async () => {
+    if (!imageUrls) {
+      toast.error("Please select an image of the food");
+      return;
+    }
+
+    startTransition(async () => {
+      const imageFile = await convertBlobUrlToFile(imageUrls);
+
+      const { imageUrl, error } = await uploadImage({
+        file: imageFile,
+        bucket: "ruoka",
+      });
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      const uploadedUrl = imageUrl;
+
+      console.log("image urls");
+      console.log(uploadedUrl);
+
+      const updatedFormData = {
+        ...formData,
+        imageUrl: uploadedUrl,
+      };
+
+      setImageUrls(null);
+
+      const newFood = await addFoodAction(updatedFormData);
+      toast.success("Food shared successfully!");
+      console.log("newFood");
+      console.log(newFood);
+      router.push(`/details/donation/${newFood.data[0].id}`);
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission (e.g., send data to backend)
-    console.log("Form submitted:", formData);
-    toast.success("Food shared successfully!");
+    // console.log("Form submitted:", formData);
 
     // await deleteImage(
     //   "https://hheakidhvgpegldaqczr.supabase.co/storage/v1/object/public/ruoka/2b7636de-5774-439b-babf-cecef30b0b57.jpeg"
     // );
 
-    const newFood = await addFoodAction(formData);
-    console.log("newFood");
-    console.log(newFood);
-    router.push(`/details/donation/${newFood.data[0].id}`);
+    if (!formData.category) {
+      toast.error("Please select a category");
+      return;
+    }
+
+    if (
+      formData.address === "Initial Address" ||
+      !formData.address ||
+      formData.address === ""
+    ) {
+      toast.error("Please add an address");
+      return;
+    }
+
+    await handleClickUploadImagesButton();
+    // if (!formData.imageUrl) {
+    //   toast.error("Please upload an image of the food");
+    //   return;
+    // }
+
+    // const newFood = await addFoodAction(formData);
+    // toast.success("Food shared successfully!");
+    // console.log("newFood");
+    // console.log(newFood);
+    // router.push(`/details/donation/${newFood.data[0].id}`);
     // const allFood = await getAllFoodAction();
     // console.log(allFood);
 
@@ -63,6 +144,7 @@ export default function DonationForm({ userData }) {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
   return (
     <div className="w-2/3 flex flex-col items-center space-y-2 my-10">
       <h1 className="text-3xl font-bold mb-6">Share Your Food</h1>
@@ -131,7 +213,42 @@ export default function DonationForm({ userData }) {
           </Select>
         </div>
 
-        <FoodImage setFormData={setFormData} />
+        {/* <FoodImage setFormData={setFormData} /> */}
+
+        <div className="flex justify-center items-center flex-col gap-8">
+          <input
+            type="file"
+            hidden
+            ref={imageInputRef}
+            onChange={handleImageChange}
+            disabled={isPending}
+          />
+
+          <button
+            className="bg-slate-200 py-2 w-40 rounded-lg"
+            onClick={() => imageInputRef.current?.click()}
+            type="button"
+            disabled={isPending}
+          >
+            Select Images
+          </button>
+
+          <div className="flex gap-4">
+            {imageUrls && (
+              <Image src={imageUrls} width={300} height={300} alt={`img`} />
+            )}
+          </div>
+
+          {/* <button
+            onClick={handleClickUploadImagesButton}
+            className="bg-slate-200 py-2 w-40 rounded-lg"
+            disabled={isPending}
+            type="button"
+          >
+            {isPending ? "Uploading..." : "Upload Images"}
+          </button> */}
+        </div>
+
         <div>
           <Label htmlFor="contact">Contact</Label>
           <Input
@@ -145,7 +262,9 @@ export default function DonationForm({ userData }) {
         </div>
         <ShareAddress setFormData={setFormData} />
 
-        <Button type="submit">Share Food</Button>
+        <Button type="submit" disabled={isPending}>
+          {isPending ? "Uploading..." : "Share Food"}
+        </Button>
       </form>
     </div>
   );

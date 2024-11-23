@@ -48,19 +48,19 @@ export default function ShareAddress({ setFormData }) {
         title: "marker",
       });
 
-      const cityCircle = new google.maps.Circle({
-        strokeColor: "#00FF00",
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: "#0FF000",
-        fillOpacity: 0.35,
-        map: gMap,
-        center: {
-          lat: mapOptions?.center?.lat,
-          lng: mapOptions?.center.lng,
-        },
-        radius: 5000,
-      });
+      // const cityCircle = new google.maps.Circle({
+      //   strokeColor: "#00FF00",
+      //   strokeOpacity: 0.8,
+      //   strokeWeight: 2,
+      //   fillColor: "#0FF000",
+      //   fillOpacity: 0.35,
+      //   map: gMap,
+      //   center: {
+      //     lat: mapOptions?.center?.lat,
+      //     lng: mapOptions?.center.lng,
+      //   },
+      //   radius: 5000,
+      // });
 
       //   const ontarioBounds = new google.maps.LatLngBounds(
       //     new google.maps.LatLng({ lat: 48.4026688, lng: -89.4053302 }), // south west
@@ -136,19 +136,19 @@ export default function ShareAddress({ setFormData }) {
       title: "marker",
     });
 
-    const cityCircle = new google.maps.Circle({
-      strokeColor: "#00FF00",
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: "#0FF000",
-      fillOpacity: 0.35,
-      map,
-      center: {
-        lat: location?.lat,
-        lng: location?.lng,
-      },
-      radius: 5000,
-    });
+    // const cityCircle = new google.maps.Circle({
+    //   strokeColor: "#00FF00",
+    //   strokeOpacity: 0.8,
+    //   strokeWeight: 2,
+    //   fillColor: "#0FF000",
+    //   fillOpacity: 0.35,
+    //   map,
+    //   center: {
+    //     lat: location?.lat,
+    //     lng: location?.lng,
+    //   },
+    //   radius: 5000,
+    // });
 
     // const infoWindow = new google.maps.InfoWindow({
     //   maxWidth: 200,

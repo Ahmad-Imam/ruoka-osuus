@@ -1,12 +1,18 @@
 import { createClient } from "@/supabase/server";
 import DonationForm from "./_components/DonationForm";
 import { getUserById } from "@/queries/user";
+import { redirect } from "next/navigation";
 
 export default async function DonationFoodPage() {
   const supabaseServer = createClient();
 
   const { data, error } = await supabaseServer.auth.getUser();
   // console.log(data?.user?.user_metadata);
+
+  if (!data?.user) {
+    redirect("/login");
+  }
+
   const { data: userData, error: userError } = await getUserById(
     data?.user?.id
   );

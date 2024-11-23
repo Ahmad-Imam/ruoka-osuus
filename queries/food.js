@@ -25,15 +25,15 @@ export function reserveFood(id, newStatus, reserveId) {
   if (newStatus === "reserved") {
     return supabase
       .from("food")
-      .update({ status: newStatus, reserveid: reserveId })
+      .update({ fstatus: newStatus, reserveid: reserveId })
       .eq("id", id);
   } else if (newStatus === "available") {
     return supabase
       .from("food")
-      .update({ status: newStatus, reserveid: null })
+      .update({ fstatus: newStatus, reserveid: null })
       .eq("id", id);
   } else if (newStatus === "completed") {
-    return supabase.from("food").update({ status: newStatus }).eq("id", id);
+    return supabase.from("food").update({ fstatus: newStatus }).eq("id", id);
   }
 }
 

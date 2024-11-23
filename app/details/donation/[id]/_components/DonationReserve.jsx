@@ -17,13 +17,14 @@ import {
 } from "@/components/ui/alert-dialog";
 
 export default function DonationReserve({ foodInfo, foodUser, loggedUser }) {
+  console.log(loggedUser);
   const isLoggedUserFoodOwner = foodInfo?.userid === loggedUser?.id;
   console.log(isLoggedUserFoodOwner);
   // console.log(loggedUser?.id);
   async function handleReserveClick() {
     console.log("Reserve food");
 
-    if (foodInfo?.status === "reserved") {
+    if (foodInfo?.fstatus === "reserved") {
       await reserveFoodAction(foodInfo.id, "available");
       toast.success("Reservation cancelled");
     } else {
@@ -40,7 +41,7 @@ export default function DonationReserve({ foodInfo, foodUser, loggedUser }) {
 
   return (
     <div className="flex justify-between items-end w-full">
-      {isLoggedUserFoodOwner && foodInfo?.status === "reserved" && (
+      {isLoggedUserFoodOwner && foodInfo?.fstatus === "reserved" && (
         <div className="flex justify-between flex-row items-center  w-full">
           <Button
             onClick={handleReserveClick}
@@ -57,7 +58,7 @@ export default function DonationReserve({ foodInfo, foodUser, loggedUser }) {
           </Button>
         </div>
       )}
-      {!isLoggedUserFoodOwner && foodInfo?.status === "available" && (
+      {!isLoggedUserFoodOwner && foodInfo?.fstatus === "available" && (
         // <Button
         //   disabled={foodInfo?.status === "reserved"}
         //   onClick={handleReserveClick}
