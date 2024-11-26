@@ -1,5 +1,6 @@
 "use server";
 
+import { addEvent, addInterestedUserToEvent } from "@/queries/event";
 import {
   addFood,
   getAllFood,
@@ -99,5 +100,20 @@ export async function getAllRequestLocationAction(location, radius) {
   const allFoodLocation = await getAllRequestFromLocation(location, radius);
   // console.log(allFoodLocation);
   return allFoodLocation;
+  // return supabaseServer.from("food").select();
+}
+
+export async function addEventAction(formData) {
+  const newFood = await addEvent(formData);
+  // console.log(allFood);
+  return newFood;
+  // return supabaseServer.from("food").select();
+}
+
+export async function addInterestedUserToEventAction(eventId, userId) {
+  const newFood = await addInterestedUserToEvent(eventId, userId);
+  // console.log(allFood);
+  revalidatePath("/details/event/" + eventId);
+  return newFood;
   // return supabaseServer.from("food").select();
 }

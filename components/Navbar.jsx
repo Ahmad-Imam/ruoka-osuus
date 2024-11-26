@@ -74,6 +74,16 @@ export default function Navbar() {
                   Request
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link
+                  href="/create/event"
+                  className=" hover:underline p-1 md:text-sm w-full text-center"
+                  prefetch={false}
+                  // onClick={handleLogout}
+                >
+                  Event
+                </Link>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <DropdownMenu>
@@ -110,6 +120,16 @@ export default function Navbar() {
                   // onClick={handleLogout}
                 >
                   Requests
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link
+                  href="/find/event"
+                  className=" hover:underline p-1 md:text-sm w-full text-center"
+                  prefetch={false}
+                  // onClick={handleLogout}
+                >
+                  Events
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -152,6 +172,9 @@ export default function Navbar() {
                   <Link href="/create/request" onClick={() => setIsOpen(false)}>
                     Request
                   </Link>
+                  <Link href="/create/event" onClick={() => setIsOpen(false)}>
+                    Event
+                  </Link>
                 </div>
               )}
             </div>
@@ -171,6 +194,9 @@ export default function Navbar() {
                   </Link>
                   <Link href="/find/request" onClick={() => setIsOpen(false)}>
                     Request
+                  </Link>
+                  <Link href="/find/event" onClick={() => setIsOpen(false)}>
+                    Event
                   </Link>
                 </div>
               )}

@@ -24,6 +24,14 @@ export function createClient() {
           }
         },
       },
+      global: {
+        fetch(url, options) {
+          return fetch(url, {
+            cache: "no-cache",
+            ...options,
+          });
+        },
+      },
     }
   );
 }
