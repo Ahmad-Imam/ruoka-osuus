@@ -3,9 +3,10 @@ import { Button } from "@/components/ui/button";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
+import { MapPinIcon } from "lucide-react";
 import { capitalizeFirstLetter } from "@/lib/utils";
 
-export default function RequestCard({ item }) {
+export default function EventCard({ item }) {
   // console.log(item);
   return (
     <Card>
@@ -16,8 +17,13 @@ export default function RequestCard({ item }) {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <p className="text-sm">{item.description}</p>
-        <Link href={`/details/request/${item?.id}`} className="">
+        <div>
+          <p className="text-sm flex items-start">
+            <MapPinIcon className="w-4 h-4 mr-1 mt-1 flex-shrink-0" />
+            {item.address}
+          </p>
+        </div>
+        <Link href={`/details/event/${item?.id}`} className="">
           <Button className="my-4 text-white">Details</Button>
         </Link>
       </CardContent>

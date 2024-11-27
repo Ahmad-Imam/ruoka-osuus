@@ -51,7 +51,7 @@ export default function DonationDetails({
   console.log(isLoggedUserReservedUser);
 
   return (
-    <div className="min-h-screen bg-white p-4 md:p-8">
+    <div className="min-h-screen p-4 md:p-8">
       <Card className="max-w-3xl mx-auto">
         <CardHeader>
           <div className="flex justify-between items-start">
@@ -59,7 +59,7 @@ export default function DonationDetails({
               <CardTitle className="text-2xl md:text-3xl font-bold mb-2">
                 {foodInfo.title}
               </CardTitle>
-              <Badge variant="outline" className="text-xs">
+              <Badge variant="" className="text-xs">
                 {foodInfo.category}
               </Badge>
             </div>
@@ -121,8 +121,11 @@ export default function DonationDetails({
           </div>
           <div>
             <h3 className="font-semibold mb-2">Shared by</h3>
-            <Link href={`/user/${foodInfo.userid}`}>
-              <p className="text-sm flex items-center font-bold">
+            <Link
+              href={`/user/${foodInfo.userid}`}
+              className="flex justify-start items-start w-min"
+            >
+              <p className="text-sm flex items-center font-bold w-max">
                 <UserIcon className="w-6 h-6 mr-1" />
                 {foodUser?.full_name}
               </p>

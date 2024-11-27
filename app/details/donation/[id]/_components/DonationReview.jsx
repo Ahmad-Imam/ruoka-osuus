@@ -58,7 +58,9 @@ export function DonationReview({ foodInfo }) {
   return (
     <Drawer open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger asChild>
-        <Button variant="outline">Leave a Review</Button>
+        <Button className="text-white" variant="outline">
+          Leave a Review
+        </Button>
       </DrawerTrigger>
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
@@ -87,7 +89,7 @@ export function DonationReview({ foodInfo }) {
             ))}
           </div>
           <div className="p-4 pt-0">
-            <Button onClick={handleSubmit} className="w-full">
+            <Button onClick={handleSubmit} className="w-full text-white">
               Submit Review
             </Button>
           </div>

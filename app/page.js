@@ -25,12 +25,12 @@ export default function Home() {
               Share your excess food and reduce waste in your community
             </p>
             <div className="flex flex-col sm:flex-row justify-center mt-8 gap-4">
-              <Button asChild size="lg">
-                <Link href="/share">
+              <Button asChild size="lg" className="text-white">
+                <Link href="/create/donation">
                   Share Food <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg">
+              <Button asChild variant="outline" className="" size="lg">
                 <Link href="/find/donation">
                   Find Food <Search className="ml-2 h-5 w-5" />
                 </Link>
@@ -53,7 +53,7 @@ export default function Home() {
               />
               <FeatureCard
                 icon={<Search className="h-10 w-10 text-primary" />}
-                title="Find Available Food"
+                title="Find donations, requests and events"
                 description="Discover and request available food shares in your area."
               />
               <FeatureCard
@@ -74,8 +74,8 @@ export default function Home() {
             <p className="text-xl mb-8">
               Join our community and start sharing today!
             </p>
-            <Button asChild size="lg">
-              <Link href="/share">Get Started</Link>
+            <Button asChild size="lg" className="text-white">
+              <Link href="/find/donation">Get Started</Link>
             </Button>
           </div>
         </section>
@@ -86,24 +86,10 @@ export default function Home() {
 
 function FeatureCard({ icon, title, description }) {
   return (
-    <Card className="flex flex-col items-center text-center">
-      <CardHeader>
-        {icon}
+    <Card className="flex flex-col items-center justify-start text-start">
+      <CardHeader className="flex flex-col justify-center items-center">
+        <div className="pb-2">{icon}</div>
         <CardTitle>{title}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p>{description}</p>
-      </CardContent>
-    </Card>
-  );
-}
-
-function ImpactCard({ icon, title, description }) {
-  return (
-    <Card className="flex flex-col items-center text-center">
-      <CardHeader>
-        {icon}
-        <CardTitle className="text-4xl font-bold">{title}</CardTitle>
       </CardHeader>
       <CardContent>
         <p>{description}</p>

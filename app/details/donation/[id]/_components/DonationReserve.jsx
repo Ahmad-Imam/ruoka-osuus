@@ -47,11 +47,13 @@ export default function DonationReserve({ foodInfo, foodUser, loggedUser }) {
             onClick={handleReserveClick}
             //   disabled={foodInfo?.status !== "reserved"}
             variant="outline"
+            className="text-white"
           >
             Cancel Reservation
           </Button>
           <Button
             onClick={handleCompleteDonation}
+            className="text-white"
             //   disabled={foodInfo?.status !== "reserved"}
           >
             Complete Donation
@@ -71,7 +73,7 @@ export default function DonationReserve({ foodInfo, foodUser, loggedUser }) {
             asChild
             disabled={foodInfo?.status === "reserved"}
           >
-            <Button>Reserve</Button>
+            <Button className="text-white">Reserve</Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>

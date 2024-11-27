@@ -154,6 +154,7 @@ export default function DonationForm({ userData }) {
           <Input
             id="title"
             name="title"
+            className="dark:bg-slate-800"
             value={formData.title}
             onChange={handleChange}
             required
@@ -166,15 +167,17 @@ export default function DonationForm({ userData }) {
             name="description"
             value={formData.description}
             onChange={handleChange}
+            className="dark:bg-slate-800"
             required
           />
         </div>
         <div>
-          <Label htmlFor="amount">amount</Label>
+          <Label htmlFor="amount">Amount</Label>
           <Input
             id="amount"
             name="amount"
             type="number"
+            className="dark:bg-slate-800"
             value={formData.amount}
             onChange={handleChange}
             required
@@ -184,6 +187,7 @@ export default function DonationForm({ userData }) {
           <Label htmlFor="expirationdate">Expiration Date</Label>
           <Input
             id="expirationdate"
+            className="dark:bg-slate-800"
             name="expirationdate"
             type="date"
             value={formData.expirationdate}
@@ -199,7 +203,7 @@ export default function DonationForm({ userData }) {
               setFormData((prev) => ({ ...prev, category: value }))
             }
           >
-            <SelectTrigger>
+            <SelectTrigger className="dark:bg-slate-800">
               <SelectValue placeholder="Select a category" />
             </SelectTrigger>
             <SelectContent>
@@ -225,12 +229,12 @@ export default function DonationForm({ userData }) {
           />
 
           <button
-            className="bg-slate-200 py-2 w-40 rounded-lg"
+            className="bg-slate-200 dark:bg-slate-800 py-2 w-40 rounded-lg"
             onClick={() => imageInputRef.current?.click()}
             type="button"
             disabled={isPending}
           >
-            Select Images
+            Select Image
           </button>
 
           <div className="flex gap-4">
@@ -254,6 +258,7 @@ export default function DonationForm({ userData }) {
           <Input
             id="contact"
             name="contact"
+            className="dark:bg-slate-800"
             placeholder="Phone number or email"
             value={formData.contact}
             onChange={handleChange}
@@ -262,7 +267,7 @@ export default function DonationForm({ userData }) {
         </div>
         <ShareAddress setFormData={setFormData} />
 
-        <Button type="submit" disabled={isPending}>
+        <Button type="submit" disabled={isPending} className="text-white">
           {isPending ? "Uploading..." : "Share Food"}
         </Button>
       </form>

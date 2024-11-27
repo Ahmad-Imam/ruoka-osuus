@@ -84,7 +84,6 @@ export default function LoginOut() {
                 href={`/user/${loggedUser?.id}`}
                 passHref
                 className="w-full text-center hover:underline p-1 md:text-lg"
-                prefetch={false}
               >
                 Profile
               </Link>
@@ -92,7 +91,6 @@ export default function LoginOut() {
             <DropdownMenuItem>
               <button
                 className="w-full hover:underline p-1 md:text-lg"
-                prefetch={false}
                 onClick={handleLogout}
               >
                 Logout

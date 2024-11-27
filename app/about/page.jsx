@@ -34,7 +34,7 @@ export default function About() {
           and everyone has access to nutritious meals.
         </p>
         <div className="mt-8">
-          <Button asChild>
+          <Button className="text-white" asChild>
             <Link href="/share">Start Sharing</Link>
           </Button>
         </div>

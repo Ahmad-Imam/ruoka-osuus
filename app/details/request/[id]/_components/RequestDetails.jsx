@@ -57,8 +57,11 @@ export default function RequestDetails({ requestInfo, requestUser }) {
           </div>
           <div>
             <h3 className="font-semibold mb-2">Shared by</h3>
-            <Link href={`/user/${requestInfo.userid}`}>
-              <p className="text-sm flex items-center font-bold">
+            <Link
+              href={`/user/${requestInfo.userid}`}
+              className="flex justify-start items-start w-min"
+            >
+              <p className="text-sm flex items-center font-bold w-max">
                 <UserIcon className="w-6 h-6 mr-1" />
                 {requestUser?.full_name}
               </p>

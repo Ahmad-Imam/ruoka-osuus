@@ -88,7 +88,7 @@ export default function DonationList({ allFood, userRadius }) {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="mx-auto px-4 py-8 w-4/5">
       <h1 className="text-3xl font-bold mb-6">Find Available Donations</h1>
       <form onSubmit={handleSearch} className="mb-8">
         <div className="flex flex-col sm:flex-row gap-4">
@@ -119,13 +119,13 @@ export default function DonationList({ allFood, userRadius }) {
               </SelectContent>
             </Select>
           </div>
-          <Button type="submit" className="w-full sm:w-auto">
+          <Button type="submit" className="w-full sm:w-auto text-white">
             Search
           </Button>
           <Button
             type="button"
             onClick={handleMyLocationClick}
-            className="w-full sm:w-auto"
+            className="w-full sm:w-auto text-white"
           >
             Nearby
           </Button>
@@ -137,7 +137,7 @@ export default function DonationList({ allFood, userRadius }) {
           <p className="text-center text-lg mt-4 col-span-full">Loading...</p>
         ) : foodItems?.length === 0 ? (
           <p className="text-center text-lg mt-4 col-span-full">
-            No items found matching your search criteria.
+            No items found.
           </p>
         ) : (
           foodItems?.map((item) => <DonationCard item={item} key={item?.id} />)

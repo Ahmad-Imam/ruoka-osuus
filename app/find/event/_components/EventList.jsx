@@ -6,26 +6,33 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import RequestCard from "./RequestCard";
+import EventCard from "./EventCard";
 
-import { getAllRequestLocationAction } from "@/app/actions";
+import {
+  getAllEventLocationAction,
+  getAllRequestLocationAction,
+} from "@/app/actions";
 
-export default function RequestList({ allRequest, userRadius }) {
+export default function EventList({ allEvents, userRadius }) {
   // console.log(allFood);
   const [searchTerm, setSearchTerm] = useState("");
-  const [foodItems, setFoodItems] = useState(allRequest);
+  const [foodItems, setFoodItems] = useState(allEvents);
   const [error, setError] = useState(null);
   // console.log(currentLocation);
   const [loading, setLoading] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
+
+    console.log(searchTerm);
+    console.log(foodItems);
+
     // Filter food items based on search term
     if (searchTerm === "") {
-      setFoodItems(allRequest);
+      setFoodItems(allEvents);
       return;
     }
-    const filteredItems = allRequest.filter((item) =>
+    const filteredItems = allEvents.filter((item) =>
       item.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFoodItems(filteredItems);
@@ -43,7 +50,7 @@ export default function RequestList({ allRequest, userRadius }) {
           };
           // setCurrentLocation(newLocation);
           setError(null);
-          const newFoodList = await getAllRequestLocationAction(
+          const newFoodList = await getAllEventLocationAction(
             newLocation,
             userRadius
           );
@@ -61,12 +68,12 @@ export default function RequestList({ allRequest, userRadius }) {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Find Available Requests</h1>
+      <h1 className="text-3xl font-bold mb-6">Find Available Events</h1>
       <form onSubmit={handleSearch} className="mb-8">
         <div className="flex gap-4">
           <div className="flex-grow">
             <Label htmlFor="search" className="sr-only">
-              Search for requests
+              Search for events
             </Label>
             <Input
               id="search"
@@ -95,7 +102,7 @@ export default function RequestList({ allRequest, userRadius }) {
         ) : foodItems?.length === 0 ? (
           <p className="text-center  text-lg mt-4">No items found.</p>
         ) : (
-          foodItems?.map((item) => <RequestCard item={item} key={item?.id} />)
+          foodItems?.map((item) => <EventCard item={item} key={item?.id} />)
         )}
       </div>
     </div>

@@ -27,6 +27,7 @@ export default function DonationMap({ location }) {
         },
         zoom: 14,
         mapId: "MY-MAP-ID-1234",
+        colorScheme: google.maps.ColorScheme.FOLLOW_SYSTEM,
       };
       // console.log(mapOptions?.center);
       const gMap = new google.maps.Map(mapRef.current, mapOptions);

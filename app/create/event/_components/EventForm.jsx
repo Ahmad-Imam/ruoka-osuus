@@ -147,6 +147,7 @@ export default function EventForm({ userData }) {
         <div>
           <Label htmlFor="title">Event Name</Label>
           <Input
+            className="dark:bg-slate-800"
             id="title"
             name="title"
             value={formData.title}
@@ -157,6 +158,7 @@ export default function EventForm({ userData }) {
         <div>
           <Label htmlFor="description">Description</Label>
           <Textarea
+            className="dark:bg-slate-800"
             id="description"
             name="description"
             value={formData.description}
@@ -168,6 +170,7 @@ export default function EventForm({ userData }) {
         <div>
           <Label htmlFor="estimatedate">Estimated Date</Label>
           <Input
+            className="dark:bg-slate-800"
             id="estimatedate"
             name="estimatedate"
             type="date"
@@ -189,12 +192,12 @@ export default function EventForm({ userData }) {
           />
 
           <button
-            className="bg-slate-200 py-2 w-40 rounded-lg"
+            className="bg-slate-200 py-2 w-40 rounded-lg dark:bg-slate-800"
             onClick={() => imageInputRef.current?.click()}
             type="button"
             disabled={isPending}
           >
-            Select Images
+            Select Image (Optional)
           </button>
 
           <div className="flex gap-4">
@@ -221,12 +224,13 @@ export default function EventForm({ userData }) {
             placeholder="Phone number or email"
             value={formData.contact}
             onChange={handleChange}
+            className="dark:bg-slate-800"
             required
           />
         </div>
         <ShareAddress setFormData={setFormData} />
 
-        <Button type="submit" disabled={isPending}>
+        <Button type="submit" disabled={isPending} className="text-white">
           {isPending ? "Uploading..." : "Share Food"}
         </Button>
       </form>

@@ -1,6 +1,10 @@
 "use server";
 
-import { addEvent, addInterestedUserToEvent } from "@/queries/event";
+import {
+  addEvent,
+  addInterestedUserToEvent,
+  getAllEventFromLocation,
+} from "@/queries/event";
 import {
   addFood,
   getAllFood,
@@ -30,8 +34,8 @@ export async function loginUser() {
 
   const { data: userData, error: userError } =
     await supabaseServer.auth.getUser();
-  console.log("newUser", userData);
-  console.log(userData?.user?.user_metadata);
+  // console.log("newUser", userData);
+  // console.log(userData?.user?.user_metadata);
 }
 
 export async function logoutUser() {
@@ -51,6 +55,7 @@ export async function getAllFoodAction() {
 export async function addFoodAction(formData) {
   const newFood = await addFood(formData);
   // console.log(allFood);
+  revalidatePath("/find/food");
   return newFood;
   // return supabaseServer.from("food").select();
 }
@@ -91,6 +96,7 @@ export async function setUserRadiusAction(userId, radius) {
 export async function addRequestAction(formData) {
   const newReq = await addRequest(formData);
   // console.log(allFood);
+  revalidatePath("/find/request");
   return newReq;
   // return supabaseServer.from("food").select();
 }
@@ -105,6 +111,7 @@ export async function getAllRequestLocationAction(location, radius) {
 
 export async function addEventAction(formData) {
   const newFood = await addEvent(formData);
+  revalidatePath("/find/event");
   // console.log(allFood);
   return newFood;
   // return supabaseServer.from("food").select();
@@ -115,5 +122,13 @@ export async function addInterestedUserToEventAction(eventId, userId) {
   // console.log(allFood);
   revalidatePath("/details/event/" + eventId);
   return newFood;
+  // return supabaseServer.from("food").select();
+}
+
+export async function getAllEventLocationAction(location, radius) {
+  // console.log(location);
+  const allFoodLocation = await getAllEventFromLocation(location, radius);
+  // console.log(allFoodLocation);
+  return allFoodLocation;
   // return supabaseServer.from("food").select();
 }

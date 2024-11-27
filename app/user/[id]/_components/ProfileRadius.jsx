@@ -33,7 +33,7 @@ export default function ProfileRadius({ userData, isLoggedUser }) {
             className="w-24"
           />
           <span className="text-sm ">km</span>
-          <Button onClick={handleRadiusSubmit} size="sm">
+          <Button onClick={handleRadiusSubmit} className="text-white" size="sm">
             Set
           </Button>
         </div>
@@ -41,7 +41,11 @@ export default function ProfileRadius({ userData, isLoggedUser }) {
         <div className="flex gap-2 items-center justify-center">
           <span>{radius} km</span>
           {isLoggedUser && (
-            <Button onClick={() => setRadiusEdit(true)} size="sm">
+            <Button
+              className="text-white"
+              onClick={() => setRadiusEdit(true)}
+              size="sm"
+            >
               Edit
             </Button>
           )}

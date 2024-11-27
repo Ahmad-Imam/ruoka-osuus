@@ -64,6 +64,7 @@ export default function EventInterest({
           <div className="flex justify-between flex-row items-center  w-full">
             <Button
               onClick={handleAddToInterested}
+              className="text-white"
               //   disabled={foodInfo?.status !== "reserved"}
             >
               Add to Interested
@@ -73,6 +74,7 @@ export default function EventInterest({
           <div className="flex justify-between flex-row items-center  w-full">
             <Button
               onClick={handleCompleteDonation}
+              className="text-white"
               //   disabled={foodInfo?.status !== "reserved"}
             >
               Remove from Interested

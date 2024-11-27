@@ -41,10 +41,10 @@ export default async function RootLayout({ children }) {
           <Navbar />
           <div className="flex min-h-screen flex-col ">
             <main className="flex-1">{children}</main>
-            <footer className="border-t">
-              <div className="container flex h-14 items-center">
+            <footer className="border-t ">
+              <div className="flex h-14 items-center justify-center ">
                 <p className="text-sm text-muted-foreground">
-                  © 2023 FoodShare. All rights reserved.
+                  © 2024 FoodShare. All rights reserved.
                 </p>
               </div>
             </footer>

@@ -1,11 +1,12 @@
-import { getAllFood, getAllFoodFromLocation } from "@/queries/food";
-import DonationList from "./_components/DonationList";
+import EventList from "./_components/EventList";
 import { getLoggedInUser, getUserById } from "@/queries/user";
+import { getAllRequests } from "@/queries/request";
+import { getAllEvents } from "@/queries/event";
 
 // Mock data for available food items
 
-export default async function FindDonationPage() {
-  const allFood = await getAllFood();
+export default async function FindRequestPage() {
+  const allEvents = await getAllEvents();
 
   // const allFoodLocation = await getAllFoodFromLocation();
   // console.log(allFoodLocation);
@@ -20,11 +21,9 @@ export default async function FindDonationPage() {
   // console.log(userData[0]?.radius);
 
   return (
-    <div>
-      <DonationList
-        allFood={allFood?.data}
-        userRadius={userData && userData[0]?.radius}
-      />
-    </div>
+    <EventList
+      allEvents={allEvents?.data}
+      userRadius={userData && userData[0]?.radius}
+    />
   );
 }

@@ -68,7 +68,7 @@ export default function FoodImage({ setFormData }) {
         type="button"
         disabled={isPending}
       >
-        Select Images
+        Select Image
       </button>
 
       <div className="flex gap-4">

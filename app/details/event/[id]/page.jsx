@@ -36,24 +36,18 @@ export default async function EventDetailsPage({ params }) {
   );
 
   //check if the logged user is the interested user in the interesterid array
-  const isLoggedUserInterestedUser = data[0]?.interestid?.includes(
-    loggedUser?.user?.id
-  );
-  console.log("interestedUser");
-  console.log(isLoggedUserInterestedUser);
-
-  // const { data: reservedUser, error: reservedUserError } = await getUserById(
-  //   data[0]?.reserveid
+  // const isLoggedUserInterestedUser = data[0]?.interestid?.includes(
+  //   loggedUser?.user?.id
   // );
+  // console.log("interestedUser");
+  // console.log(isLoggedUserInterestedUser);
 
   return (
     <div>
       <EventDetails
         eventInfo={data[0]}
         eventOwner={userData[0]}
-        // reservedUser={reservedUser && reservedUser[0]}
         loggedUser={loggedUser?.user}
-        isLoggedUserInterestedUser={isLoggedUserInterestedUser}
       />
     </div>
   );

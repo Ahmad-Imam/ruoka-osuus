@@ -1,6 +1,6 @@
 import { createClient } from "@/supabase/server";
 
-export function getAllEvent() {
+export function getAllEvents() {
   const supabase = createClient();
   return supabase.from("event").select();
 }
@@ -39,7 +39,7 @@ export async function getAllEventFromLocation(location, radius) {
   console.log(location?.lat);
   console.log(location?.lng);
   const supabase = createClient();
-  const { data, error } = await supabase.rpc("find_nearby_places", {
+  const { data, error } = await supabase.rpc("find_nearby_places_event", {
     user_lat: location?.lat,
     user_lng: location?.lng,
     search_radius: radius ?? 10,

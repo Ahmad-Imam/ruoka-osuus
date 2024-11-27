@@ -72,6 +72,7 @@ export default function RequestForm({ userData }) {
             id="title"
             name="title"
             value={formData.title}
+            className="dark:bg-slate-800"
             onChange={handleChange}
             required
           />
@@ -83,6 +84,7 @@ export default function RequestForm({ userData }) {
             name="description"
             value={formData.description}
             onChange={handleChange}
+            className="dark:bg-slate-800"
             required
           />
         </div>
@@ -95,12 +97,15 @@ export default function RequestForm({ userData }) {
             placeholder="Phone number or email"
             value={formData.contact}
             onChange={handleChange}
+            className="dark:bg-slate-800"
             required
           />
         </div>
         <ShareAddress setFormData={setFormData} />
 
-        <Button type="submit">Share Food</Button>
+        <Button type="submit" className="text-white">
+          Share Food
+        </Button>
       </form>
     </div>
   );
