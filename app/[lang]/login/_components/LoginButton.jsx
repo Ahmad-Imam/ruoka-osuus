@@ -44,11 +44,7 @@ export default function LoginButton() {
   }
 
   return (
-    <Button
-      onClick={handleLogin}
-      className="w-full text-white"
-      variant="outline"
-    >
+    <Button onClick={handleLogin} className="w-full dark:text-white ">
       <Google className="mr-2 h-4 w-4" />
       Sign in with Google
     </Button>

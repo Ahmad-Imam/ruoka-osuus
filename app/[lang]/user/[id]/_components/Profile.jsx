@@ -8,7 +8,7 @@ import { StarFilledIcon } from "@radix-ui/react-icons";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import DonatedFood from "./DonatedFood";
-import ReceivedFood from "./ReceivedFood";
+import ReservedFood from "./ReservedFood";
 import RequestedFood from "./RequestedFood";
 import UserEvent from "./UserEvent";
 
@@ -116,7 +116,7 @@ export default function Profile({
                       <DonatedFood donatedFoodList={donatedFoodList} />
                     </TabsContent>
                     <TabsContent value="received" className="mt-4">
-                      <ReceivedFood reservedFoodList={reservedFoodList} />
+                      <ReservedFood reservedFoodList={reservedFoodList} />
                     </TabsContent>
                   </Tabs>
                 </TabsContent>

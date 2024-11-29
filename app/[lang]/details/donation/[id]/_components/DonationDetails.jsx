@@ -51,6 +51,7 @@ export default function DonationDetails({
   // console.log(reservedUser);
   // console.log("isLoggedUserReservedUser");
   // console.log(isLoggedUserReservedUser);
+  const reviewCats = ["Ease of Access", "Communication", "Food Quality"];
 
   return (
     <div className="min-h-screen p-4 md:p-8">
@@ -150,15 +151,15 @@ export default function DonationDetails({
           <div className="space-y-2">
             <h3 className="font-semibold mb-2">Rating:</h3>
             <div className="flex justify-between items-center">
-              <span className="text-sm font-medium ">Accessibility</span>
+              <span className="text-sm font-medium ">{reviewCats[0]}</span>
               <div className="flex">{renderStars(foodInfo.access_review)}</div>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm font-medium ">Communication</span>
+              <span className="text-sm font-medium ">{reviewCats[1]}</span>
               <div className="flex">{renderStars(foodInfo.comm_review)}</div>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm font-medium ">Quality</span>
+              <span className="text-sm font-medium ">{reviewCats[2]}</span>
               <div className="flex">{renderStars(foodInfo.quality_review)}</div>
             </div>
           </div>

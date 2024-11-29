@@ -17,11 +17,17 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isFindOpen, setIsFindOpen] = useState(false);
+
+  const pathname = usePathname();
+
+  const lang = pathname.split("/")[1];
+
   return (
     <header className="sticky top-0 border-b h-14 flex justify-between items-center px-20 bg-slate-200 dark:bg-slate-800 dark:text-white z-50">
       <div className="mr-4 hidden md:flex">
@@ -78,10 +84,10 @@ export default function Navbar() {
                 <Link
                   href="/create/event"
                   className=" hover:underline p-1 md:text-sm w-full text-center"
-                  prefetch={false}
+
                   // onClick={handleLogout}
                 >
-                  Event
+                  Events
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -104,9 +110,9 @@ export default function Navbar() {
             >
               <DropdownMenuItem>
                 <Link
-                  href="/find/donation"
+                  href={`/${lang}/find/donation`}
                   className=" hover:underline p-1 md:text-sm w-full text-center"
-                  prefetch={false}
+
                   // onClick={handleLogout}
                 >
                   Donations
@@ -114,7 +120,7 @@ export default function Navbar() {
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Link
-                  href="/find/request"
+                  href={`/${lang}/find/request`}
                   className=" hover:underline p-1 md:text-sm w-full text-center"
                   prefetch={false}
                   // onClick={handleLogout}
@@ -124,7 +130,7 @@ export default function Navbar() {
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Link
-                  href="/find/event"
+                  href={`/${lang}/find/event`}
                   className=" hover:underline p-1 md:text-sm w-full text-center"
                   prefetch={false}
                   // onClick={handleLogout}

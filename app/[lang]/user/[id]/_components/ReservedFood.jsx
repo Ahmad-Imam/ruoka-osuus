@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import React from "react";
 
-export default function ReceivedFood({ reservedFoodList }) {
+export default function ReservedFood({ reservedFoodList }) {
   return (
     <ul className="space-y-2">
       {reservedFoodList?.length !== 0 ? (
