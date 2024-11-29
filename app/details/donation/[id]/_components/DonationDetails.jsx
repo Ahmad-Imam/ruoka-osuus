@@ -15,11 +15,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import DonationMap from "./DonationMap";
+
 import DonationReserve from "./DonationReserve";
 import Link from "next/link";
 import { DonationReview } from "./DonationReview";
 import { StarFilledIcon } from "@radix-ui/react-icons";
+import RenderMap from "@/components/RenderMap";
+import { capitalizeFirstLetter } from "@/lib/utils";
 
 export default function DonationDetails({
   foodInfo,
@@ -47,20 +49,20 @@ export default function DonationDetails({
   const isLoggedUserReservedUser = reservedUser?.id === loggedUser?.id;
   // console.log(loggedUser);
   // console.log(reservedUser);
-  console.log("isLoggedUserReservedUser");
-  console.log(isLoggedUserReservedUser);
+  // console.log("isLoggedUserReservedUser");
+  // console.log(isLoggedUserReservedUser);
 
   return (
     <div className="min-h-screen p-4 md:p-8">
-      <Card className="max-w-3xl mx-auto">
+      <Card className="max-w-3xl mx-auto cardFull cardFullDark">
         <CardHeader>
           <div className="flex justify-between items-start">
             <div>
               <CardTitle className="text-2xl md:text-3xl font-bold mb-2">
-                {foodInfo.title}
+                {capitalizeFirstLetter(foodInfo.title)}
               </CardTitle>
               <Badge variant="" className="text-xs">
-                {foodInfo.category}
+                {capitalizeFirstLetter(foodInfo.category)}
               </Badge>
             </div>
             <div className="flex flex-col gap-2">
@@ -90,7 +92,9 @@ export default function DonationDetails({
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
               <h3 className="font-semibold mb-2">Description</h3>
-              <p className="text-sm ">{foodInfo.description}</p>
+              <p className="text-sm ">
+                {capitalizeFirstLetter(foodInfo.description)}
+              </p>
             </div>
             <div>
               <h3 className="font-semibold mb-2">Contact</h3>
@@ -117,7 +121,7 @@ export default function DonationDetails({
               <MapPinIcon className="w-4 h-4 mr-1 mt-1 flex-shrink-0" />
               {foodInfo.address}
             </p>
-            <DonationMap location={foodInfo.location} />
+            <RenderMap location={foodInfo.location} />
           </div>
           <div>
             <h3 className="font-semibold mb-2">Shared by</h3>

@@ -10,6 +10,7 @@ import Link from "next/link";
 import DonatedFood from "./DonatedFood";
 import ReceivedFood from "./ReceivedFood";
 import RequestedFood from "./RequestedFood";
+import UserEvent from "./UserEvent";
 
 // Mock data for food history
 const donatedFood = [
@@ -38,21 +39,22 @@ const renderStars = (rating) => {
     ));
 };
 
-export default function UserProfile({
+export default function Profile({
   userData,
   donatedFoodList,
   reviews,
   reservedFoodList,
   requestData,
   isLoggedUser,
+  eventData,
 }) {
   // Mock data for user profile
   console.log(reservedFoodList?.length);
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen  py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
-        <Card className="bg-white shadow-lg">
+        <Card className=" shadow-lg">
           <CardHeader className="pb-0">
             <div className="flex items-center space-x-4">
               <Avatar className="h-24 w-24">
@@ -68,9 +70,7 @@ export default function UserProfile({
                 </AvatarFallback>
               </Avatar>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">
-                  {userData.full_name}
-                </h1>
+                <h1 className="text-2xl font-bold ">{userData.full_name}</h1>
                 <p className="">{userData.email}</p>
               </div>
             </div>
@@ -101,9 +101,10 @@ export default function UserProfile({
 
             <div className="mt-8">
               <Tabs defaultValue="donation" className="w-full">
-                <TabsList className="grid w-full grid-cols-2">
+                <TabsList className="grid w-full grid-cols-3">
                   <TabsTrigger value="donation">Donations</TabsTrigger>
                   <TabsTrigger value="request">Requests</TabsTrigger>
+                  <TabsTrigger value="event">Events</TabsTrigger>
                 </TabsList>
                 <TabsContent value="donation" className="mt-4">
                   <Tabs defaultValue="donated" className="w-full">
@@ -121,6 +122,9 @@ export default function UserProfile({
                 </TabsContent>
                 <TabsContent value="request" className="mt-4">
                   <RequestedFood requestData={requestData} />
+                </TabsContent>
+                <TabsContent value="event" className="mt-4">
+                  <UserEvent eventData={eventData} />
                 </TabsContent>
               </Tabs>
 

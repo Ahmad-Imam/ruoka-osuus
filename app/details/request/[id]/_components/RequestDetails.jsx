@@ -16,6 +16,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import FoodMap from "./RequestMap";
 import Link from "next/link";
+import RenderMap from "@/components/RenderMap";
 
 export default function RequestDetails({ requestInfo, requestUser }) {
   // const isLoggedUserReservedUser = reservedUser?.id === loggedUser?.id;
@@ -24,8 +25,8 @@ export default function RequestDetails({ requestInfo, requestUser }) {
   // console.log(isLoggedUserReservedUser);
 
   return (
-    <div className="min-h-screen bg-white p-4 md:p-8">
-      <Card className="max-w-3xl mx-auto">
+    <div className="min-h-screen p-4 md:p-8">
+      <Card className="max-w-3xl mx-auto cardFull cardFullDark">
         <CardHeader>
           <div className="flex justify-between items-start">
             <div>
@@ -53,7 +54,7 @@ export default function RequestDetails({ requestInfo, requestUser }) {
               <MapPinIcon className="w-4 h-4 mr-1 mt-1 flex-shrink-0" />
               {requestInfo.address}
             </p>
-            <FoodMap location={requestInfo.location} />
+            <RenderMap location={requestInfo.location} />
           </div>
           <div>
             <h3 className="font-semibold mb-2">Shared by</h3>

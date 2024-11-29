@@ -58,7 +58,7 @@ export function DonationReview({ foodInfo }) {
   return (
     <Drawer open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger asChild>
-        <Button className="text-white" variant="outline">
+        <Button className="" variant="outline">
           Leave a Review
         </Button>
       </DrawerTrigger>
@@ -73,7 +73,7 @@ export function DonationReview({ foodInfo }) {
           <div className="p-4 pb-0">
             {Object.keys(reviews).map((category, i) => (
               <div key={category} className="mb-4">
-                <h3 className="mb-2 text-sm font-medium text-gray-900 capitalize">
+                <h3 className="mb-2 text-sm font-medium  capitalize">
                   {reviewCats[i]}
                 </h3>
                 <div className="flex space-x-1">

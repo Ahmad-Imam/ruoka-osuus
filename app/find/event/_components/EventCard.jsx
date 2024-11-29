@@ -1,7 +1,13 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import Link from "next/link";
 import { MapPinIcon } from "lucide-react";
 import { capitalizeFirstLetter } from "@/lib/utils";
@@ -9,7 +15,7 @@ import { capitalizeFirstLetter } from "@/lib/utils";
 export default function EventCard({ item }) {
   // console.log(item);
   return (
-    <Card>
+    <Card className="flex flex-col justify-between">
       <CardHeader>
         <CardTitle className="flex flex-row justify-between ">
           {capitalizeFirstLetter(item.title)}
@@ -23,10 +29,12 @@ export default function EventCard({ item }) {
             {item.address}
           </p>
         </div>
-        <Link href={`/details/event/${item?.id}`} className="">
-          <Button className="my-4 text-white">Details</Button>
-        </Link>
       </CardContent>
+      <CardFooter>
+        <Link href={`/details/event/${item?.id}`} className="">
+          <Button className="text-white">Details</Button>
+        </Link>
+      </CardFooter>
     </Card>
   );
 }

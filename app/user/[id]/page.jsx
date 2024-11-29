@@ -11,6 +11,7 @@ import {
 } from "@/queries/food";
 import { getAvgReviews } from "@/lib/utils";
 import { getRequestsByUserId } from "@/queries/request";
+import { getAllEventByUserId } from "@/queries/event";
 
 export default async function ProfilePage({ params }) {
   // console.log(params);
@@ -28,6 +29,12 @@ export default async function ProfilePage({ params }) {
   const { data: requestData, error: requestError } = await getRequestsByUserId(
     params.id
   );
+
+  const { data: eventData, error: eventError } = await getAllEventByUserId(
+    params.id
+  );
+  console.log("eventData");
+  console.log(eventData);
 
   // let isLoggedUser = false;
 
@@ -57,6 +64,7 @@ export default async function ProfilePage({ params }) {
         reviews={reviews}
         requestData={requestData}
         isLoggedUser={isLoggedUser}
+        eventData={eventData}
       />
     </div>
   );

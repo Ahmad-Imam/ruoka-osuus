@@ -10,9 +10,9 @@ export default function ReceivedFood({ reservedFoodList }) {
           <Link
             href={`/details/donation/${item.id}`}
             key={item.id}
-            className="bg-gray-50 p-3 rounded-md flex justify-between items-center"
+            className=" dark:bg-slate-800 cardFull cardFullDark p-3 rounded-md flex justify-between items-center"
           >
-            <div className="font-medium text-gray-900 w-10">{item.title}</div>
+            <div className="font-medium w-10">{item.title}</div>
 
             <div className="text-sm  ">{item.expirationdate}</div>
 
@@ -26,7 +26,7 @@ export default function ReceivedFood({ reservedFoodList }) {
         ))
       ) : (
         <p className="text-center  text-lg py-4">
-          You have not saved any food yet.
+          You dont have any reservation.
         </p>
       )}
     </ul>

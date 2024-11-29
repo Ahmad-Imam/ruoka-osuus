@@ -16,6 +16,11 @@ export function addEvent(formData) {
   return supabase.from("event").upsert(formData).select();
 }
 
+export function getAllEventByUserId(userId) {
+  const supabase = createClient();
+  return supabase.from("event").select().eq("userid", userId);
+}
+
 export async function removeInterestedUserFromEvent(eventId, userId) {
   const supabase = createClient();
   //remove userid from interested array

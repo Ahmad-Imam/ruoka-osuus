@@ -22,6 +22,7 @@ import {
   getAllFoodAction,
 } from "@/app/actions";
 import { useRouter } from "next/navigation";
+import RenderAddress from "@/components/RenderAddress";
 
 export default function RequestForm({ userData }) {
   const [formData, setFormData] = useState({
@@ -101,7 +102,7 @@ export default function RequestForm({ userData }) {
             required
           />
         </div>
-        <ShareAddress setFormData={setFormData} />
+        <RenderAddress setFormData={setFormData} />
 
         <Button type="submit" className="text-white">
           Share Food

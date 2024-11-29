@@ -1,14 +1,20 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import Link from "next/link";
 import { capitalizeFirstLetter } from "@/lib/utils";
 
 export default function RequestCard({ item }) {
   // console.log(item);
   return (
-    <Card>
+    <Card className="flex flex-col justify-between">
       <CardHeader>
         <CardTitle className="flex flex-row justify-between ">
           {capitalizeFirstLetter(item.title)}
@@ -16,11 +22,13 @@ export default function RequestCard({ item }) {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <p className="text-sm">{item.description}</p>
-        <Link href={`/details/request/${item?.id}`} className="">
-          <Button className="my-4 text-white">Details</Button>
-        </Link>
+        <p className="text-sm">{capitalizeFirstLetter(item.description)}</p>
       </CardContent>
+      <CardFooter>
+        <Link href={`/details/request/${item?.id}`} className="">
+          <Button className="text-white">Details</Button>
+        </Link>
+      </CardFooter>
     </Card>
   );
 }

@@ -22,6 +22,7 @@ import Image from "next/image";
 
 import { uploadImage } from "@/supabase/storage/client";
 import { convertBlobUrlToFile } from "@/lib/utils";
+import RenderAddress from "@/components/RenderAddress";
 
 export default function DonationForm({ userData }) {
   const [formData, setFormData] = useState({
@@ -265,7 +266,7 @@ export default function DonationForm({ userData }) {
             required
           />
         </div>
-        <ShareAddress setFormData={setFormData} />
+        <RenderAddress setFormData={setFormData} />
 
         <Button type="submit" disabled={isPending} className="text-white">
           {isPending ? "Uploading..." : "Share Food"}

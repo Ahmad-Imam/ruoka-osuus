@@ -18,6 +18,7 @@ import { Separator } from "@/components/ui/separator";
 import EventMap from "./EventMap";
 import EventInterest from "./EventInterest";
 import Link from "next/link";
+import RenderMap from "@/components/RenderMap";
 
 export default function EventDetails({
   eventInfo,
@@ -35,8 +36,8 @@ export default function EventDetails({
   // console.log(isLoggedUserReservedUser);
 
   return (
-    <div className="min-h-screen bg-white p-4 md:p-8">
-      <Card className="max-w-3xl mx-auto">
+    <div className="min-h-screen p-4 md:p-8">
+      <Card className="max-w-3xl mx-auto cardFull cardFullDark">
         <CardHeader>
           <div className="flex justify-between items-start">
             <div>
@@ -93,7 +94,7 @@ export default function EventDetails({
             </div>
           </div>
 
-          <EventMap location={eventInfo.location} />
+          <RenderMap location={eventInfo.location} />
 
           <div className="">
             <h3 className="font-semibold mb-2">Shared by</h3>
