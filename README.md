@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ruoka Osuus
 
-## Getting Started
+## Welcome to Ruoka Osuus.
 
-First, run the development server:
+Live: https://kickstart-ahmadimam.vercel.app/
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Information
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ruoka Osuus is a food-sharing platform where users can donate their food, create donation requests, or organize food donation events for the community. The application is developed using Next.js and Supabase as databases. 
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Frontend Instructions
 
-## Learn More
+1. Run npm install
+2. run npm run dev
+3. Enjoy !!!
 
-To learn more about Next.js, take a look at the following resources:
+## Application Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Create donations, requests and events
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. You can find any donations, requests, and events near your location.
 
-## Deploy on Vercel
+3. You can customize your search radius in your profile
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Login via Google to create anything on the website. 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+5. The auto-complete addresses are restricted to Finland and Bangladesh to restrict API calls. 
+
+6. You can switch the theme from light to dark anytime. 
+
+## Sample Screenshots
+
+|  <img src="https://github.com/user-attachments/assets/ac708b5b-0de4-4b31-a4d8-938e61422a5c" width=100% height=100%> |
+|:--:|
+| *HOME SCREEN* |
+ 
+|  <img src="https://github.com/user-attachments/assets/c315cc68-22d5-4733-aee2-fc634f35ffd0" width=100% height=100%> |
+|:--:|
+| *Create Donation SCREEN* |
+ 
+|  <img src="https://github.com/user-attachments/assets/d8512ffd-f00f-44ae-8de6-0e75db572650" width=100% height=100%> |
+|:--:|
+| *Donaiton Details SCREEN* |
+ 
+|  <img src="https://github.com/user-attachments/assets/92d946db-6565-4406-a831-a9d1852777c0" width=100% height=100%> |
+|:--:|
+| *Find Nearby Donations SCREEN* |
+
+|  <img src="https://github.com/user-attachments/assets/61fea81c-1b95-4776-b8b9-1ac65f480814" width=100% height=100%> |
+|:--:|
+| *Profile SCREEN* |
+
+
+### Application Limitations
+- Currently, there is only one login method with Google
+- There are no systems for adding interested events to your profile
+- In future, a chat system between the users might be explored
+
