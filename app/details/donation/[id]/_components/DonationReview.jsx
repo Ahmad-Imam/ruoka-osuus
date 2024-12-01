@@ -10,7 +10,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
-import { StarIcon } from "lucide-react";
+
 import { submitReviewFoodAction } from "@/app/actions";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 import { toast } from "sonner";
@@ -38,15 +38,11 @@ export function DonationReview({ foodInfo }) {
   };
 
   const handleSubmit = async () => {
-    console.log("Submitted reviews:", reviews);
-    // Here you would typically send the reviews to your backend
-
     if (
       reviews.access_review === 0 ||
       reviews.comm_review === 0 ||
       reviews.quality_review === 0
     ) {
-      // alert("Please rate all categories");
       return;
     }
 

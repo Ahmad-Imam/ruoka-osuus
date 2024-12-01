@@ -5,17 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import ShareAddress from "./ShareAddress";
-import FoodImage from "@/components/FoodImage";
 import { toast } from "sonner";
-import { deleteImage } from "@/supabase/storage/client";
 import { addEventAction, addFoodAction, getAllFoodAction } from "@/app/actions";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -49,10 +39,7 @@ export default function EventForm({ userData }) {
     if (e.target.files) {
       const filesArray = Array.from(e.target.files);
       const fileSelected = filesArray[0];
-      const newImageUrls = filesArray.map((file) => URL.createObjectURL(file));
-
       const newImageUrl = URL.createObjectURL(fileSelected);
-
       setImageUrls(newImageUrl);
     }
   };
@@ -63,8 +50,6 @@ export default function EventForm({ userData }) {
     if (!imageUrls) {
       const newFood = await addEventAction(formData);
       toast.success("Event added successfully!");
-      console.log("newFood");
-      console.log(newFood);
       router.push(`/details/event/${newFood.data[0].id}`);
     } else {
       startTransition(async () => {
@@ -79,23 +64,15 @@ export default function EventForm({ userData }) {
           console.error(error);
           return;
         }
-
         const uploadedUrl = imageUrl;
-
-        console.log("image urls");
-        console.log(uploadedUrl);
 
         const updatedFormData = {
           ...formData,
           imageUrl: uploadedUrl,
         };
-
         setImageUrls(null);
-
         const newFood = await addEventAction(updatedFormData);
         toast.success("Food shared successfully!");
-        console.log("newFood");
-        console.log(newFood);
         router.push(`/details/event/${newFood.data[0].id}`);
       });
     }
@@ -103,12 +80,6 @@ export default function EventForm({ userData }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission (e.g., send data to backend)
-    // console.log("Form submitted:", formData);
-
-    // await deleteImage(
-    //   "https://hheakidhvgpegldaqczr.supabase.co/storage/v1/object/public/ruoka/2b7636de-5774-439b-babf-cecef30b0b57.jpeg"
-    // );
 
     if (
       formData.address === "Initial Address" ||
@@ -120,20 +91,6 @@ export default function EventForm({ userData }) {
     }
 
     await handleClickUploadImagesButton();
-    // if (!formData.imageUrl) {
-    //   toast.error("Please upload an image of the food");
-    //   return;
-    // }
-
-    // const newFood = await addFoodAction(formData);
-    // toast.success("Food shared successfully!");
-    // console.log("newFood");
-    // console.log(newFood);
-    // router.push(`/details/donation/${newFood.data[0].id}`);
-    // const allFood = await getAllFoodAction();
-    // console.log(allFood);
-
-    // Reset form or show success message
   };
 
   const handleChange = (e) => {
@@ -181,8 +138,6 @@ export default function EventForm({ userData }) {
           />
         </div>
 
-        {/* <FoodImage setFormData={setFormData} /> */}
-
         <div className="flex justify-center items-center flex-col gap-8">
           <input
             type="file"
@@ -206,15 +161,6 @@ export default function EventForm({ userData }) {
               <Image src={imageUrls} width={300} height={300} alt={`img`} />
             )}
           </div>
-
-          {/* <button
-            onClick={handleClickUploadImagesButton}
-            className="bg-slate-200 py-2 w-40 rounded-lg"
-            disabled={isPending}
-            type="button"
-          >
-            {isPending ? "Uploading..." : "Upload Images"}
-          </button> */}
         </div>
 
         <div>
@@ -232,7 +178,7 @@ export default function EventForm({ userData }) {
         <RenderAddress setFormData={setFormData} />
 
         <Button type="submit" disabled={isPending} className="text-white">
-          {isPending ? "Uploading..." : "Share Food"}
+          {isPending ? "Uploading..." : "Share Event"}
         </Button>
       </form>
     </div>

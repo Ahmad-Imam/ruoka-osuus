@@ -4,11 +4,7 @@ import React from "react";
 export default function DonatedFood({ donatedFoodList }) {
   return (
     <ul className="space-y-2">
-      <div className="flex items-center justify-between p-3">
-        {/* <p>title</p>
-                      <p>Expired Date</p>
-                      <p>Amount</p> */}
-      </div>
+      <div className="flex items-center justify-between p-3"></div>
       {donatedFoodList?.length !== 0 ? (
         donatedFoodList.map((item) => (
           <Link
@@ -19,8 +15,6 @@ export default function DonatedFood({ donatedFoodList }) {
             <div className="font-medium">{item.title}</div>
 
             <div className="text-sm">{item.expirationdate}</div>
-
-            <div className="text-sm">{item.amount}</div>
           </Link>
         ))
       ) : (

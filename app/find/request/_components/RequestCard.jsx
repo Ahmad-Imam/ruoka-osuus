@@ -12,7 +12,6 @@ import Link from "next/link";
 import { capitalizeFirstLetter } from "@/lib/utils";
 
 export default function RequestCard({ item }) {
-  // console.log(item);
   return (
     <Card className="flex flex-col justify-between cardFull cardFullDark">
       <CardHeader>

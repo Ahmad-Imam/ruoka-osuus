@@ -1,29 +1,11 @@
-import Image from "next/image";
-import {
-  CalendarIcon,
-  MapPinIcon,
-  UserCheck2Icon,
-  UserIcon,
-} from "lucide-react";
+import { MapPinIcon, UserIcon } from "lucide-react";
 
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import FoodMap from "./RequestMap";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
 import Link from "next/link";
 import RenderMap from "@/components/RenderMap";
 
 export default function RequestDetails({ requestInfo, requestUser }) {
-  // const isLoggedUserReservedUser = reservedUser?.id === loggedUser?.id;
-
-  // console.log("isLoggedUserReservedUser");
-  // console.log(isLoggedUserReservedUser);
-
   return (
     <div className="min-h-screen p-4 md:p-8">
       <Card className="max-w-3xl mx-auto cardFull cardFullDark">

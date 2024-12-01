@@ -14,7 +14,6 @@ export default function ProfileRadius({ userData, isLoggedUser }) {
   };
 
   const handleRadiusSubmit = async () => {
-    // setUser((prevUser) => ({ ...prevUser, radius: Number(radius) }));
     await setUserRadiusAction(userData.id, Number(radius));
     setRadiusEdit(false);
     toast.success("Radius updated successfully");

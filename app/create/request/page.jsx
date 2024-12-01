@@ -3,6 +3,11 @@ import RequestForm from "./_components/RequestForm";
 import { getUserById } from "@/queries/user";
 import { redirect } from "next/navigation";
 
+export const metadata = {
+  title: "Create Request",
+  description: "Create a request",
+};
+
 export default async function RequestFoodPage() {
   const supabaseServer = createClient();
 
@@ -10,11 +15,9 @@ export default async function RequestFoodPage() {
   if (!data?.user) {
     redirect("/login");
   }
-  // console.log(data?.user?.user_metadata);
   const { data: userData, error: userError } = await getUserById(
     data?.user?.id
   );
-  // console.log(userData);
 
   return (
     <div className="min-h-screen w-full flex justify-center items-center flex-row">

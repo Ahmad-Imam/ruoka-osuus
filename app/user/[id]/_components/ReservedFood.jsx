@@ -16,7 +16,6 @@ export default function ReservedFood({ reservedFoodList }) {
 
             <div className="text-sm">{item.expirationdate}</div>
 
-            <div className="text-sm">{item.amount}</div>
             {item?.access_review === 0 && (
               <Badge className="text-sm  ">Awaiting Review</Badge>
             )}

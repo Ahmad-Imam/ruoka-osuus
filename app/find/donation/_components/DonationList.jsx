@@ -13,7 +13,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-// Predefined category list
 const categories = [
   "Fruits",
   "Vegetables",

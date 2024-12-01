@@ -13,7 +13,6 @@ import { MapPinIcon } from "lucide-react";
 import { capitalizeFirstLetter } from "@/lib/utils";
 
 export default function EventCard({ item }) {
-  // console.log(item);
   return (
     <Card className="flex flex-col justify-between cardFull cardFullDark">
       <CardHeader>

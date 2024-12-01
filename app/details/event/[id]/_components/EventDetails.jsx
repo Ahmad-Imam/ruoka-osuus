@@ -1,40 +1,12 @@
 import Image from "next/image";
-import {
-  CalendarIcon,
-  MapPinIcon,
-  UserCheck2Icon,
-  UserIcon,
-} from "lucide-react";
+import { CalendarIcon, MapPinIcon, UserIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import EventMap from "./EventMap";
-import EventInterest from "./EventInterest";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import RenderMap from "@/components/RenderMap";
 
-export default function EventDetails({
-  eventInfo,
-  eventOwner,
-  loggedUser,
-  isLoggedUserInterestedUser,
-}) {
-  // console.log(foodUser);
-  // console.log(foodInfo);
-
-  // const isLoggedUserReservedUser = reservedUser?.id === loggedUser?.id;
-  // console.log(loggedUser);
-  // console.log(reservedUser);
-  // console.log("isLoggedUserReservedUser");
-  // console.log(isLoggedUserReservedUser);
-
+export default function EventDetails({ eventInfo, eventOwner, loggedUser }) {
   return (
     <div className="min-h-screen p-4 md:p-8">
       <Card className="max-w-3xl mx-auto cardFull cardFullDark">
@@ -108,31 +80,7 @@ export default function EventDetails({
               </p>
             </Link>
           </div>
-          {/* {reservedUser && (
-            <div>
-              <h3 className="font-semibold mb-2">Reserved by</h3>
-              <Link href={`/user/${reservedUser?.id}`}>
-                <p className="text-sm flex items-center font-bold">
-                  <UserCheck2Icon className="w-6 h-6 mr-1 text-green-500" />
-                  {reservedUser?.full_name}
-                </p>
-              </Link>
-            </div>
-          )} */}
         </CardContent>
-        {/* {loggedUser && (
-          <>
-            <Separator className="my-4" />
-            <CardFooter className="flex justify-between">
-              <EventInterest
-                eventInfo={eventInfo}
-                foodUser={eventOwner}
-                loggedUser={loggedUser}
-                isLoggedUserInterestedUser={isLoggedUserInterestedUser}
-              />
-            </CardFooter>
-          </>
-        )} */}
       </Card>
     </div>
   );

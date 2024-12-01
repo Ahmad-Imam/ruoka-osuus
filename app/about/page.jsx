@@ -4,6 +4,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Leaf, Users, Utensils, Heart } from "lucide-react";
 
+export const metadata = {
+  title: "About",
+  description: "About ruoka osuus",
+};
+
 export default function About() {
   return (
     <div className="container mx-auto px-4 py-12">

@@ -4,11 +4,7 @@ import React from "react";
 export default function RequestedFood({ requestData }) {
   return (
     <ul className="space-y-2">
-      <div className="flex items-center justify-between p-3">
-        {/* <p>title</p>
-                      <p>Expired Date</p>
-                      <p>Amount</p> */}
-      </div>
+      <div className="flex items-center justify-between p-3"></div>
       {requestData?.length !== 0 ? (
         requestData.map((item) => (
           <Link

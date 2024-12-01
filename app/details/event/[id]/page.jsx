@@ -4,6 +4,11 @@ import { getFoodById } from "@/queries/food";
 import { getLoggedInUser, getUserById } from "@/queries/user";
 import { getEventById } from "@/queries/event";
 
+export const metadata = {
+  title: "Event Details",
+  description: "Event Details",
+};
+
 export default async function EventDetailsPage({ params }) {
   const { id } = params;
 

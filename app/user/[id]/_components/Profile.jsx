@@ -1,30 +1,14 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
-import { StarIcon } from "lucide-react";
 import ProfileRadius from "./ProfileRadius";
 import { StarFilledIcon } from "@radix-ui/react-icons";
-import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
+
 import DonatedFood from "./DonatedFood";
 import ReservedFood from "./ReservedFood";
 import RequestedFood from "./RequestedFood";
 import UserEvent from "./UserEvent";
 
-// Mock data for food history
-const donatedFood = [
-  { id: 1, name: "Homemade Lasagna", date: "2023-11-15" },
-  { id: 2, name: "Vegetable Soup", date: "2023-11-10" },
-  { id: 3, name: "Chocolate Chip Cookies", date: "2023-11-05" },
-];
-
-const receivedFood = [
-  { id: 1, name: "Fresh Bread", date: "2023-11-18" },
-  { id: 2, name: "Fruit Salad", date: "2023-11-12" },
-];
-
-// Helper function to render stars
 const renderStars = (rating) => {
   if (rating === null) return "No reviews yet";
   return Array(5)
@@ -48,7 +32,6 @@ export default function Profile({
   isLoggedUser,
   eventData,
 }) {
-  // Mock data for user profile
   console.log(reservedFoodList?.length);
 
   return (
@@ -127,19 +110,6 @@ export default function Profile({
                   <UserEvent eventData={eventData} />
                 </TabsContent>
               </Tabs>
-
-              {/* <Tabs defaultValue="donated" className="w-full">
-                <TabsList className="grid w-full grid-cols-2">
-                  <TabsTrigger value="donated">Donated</TabsTrigger>
-                  <TabsTrigger value="received">Received</TabsTrigger>
-                </TabsList>
-                <TabsContent value="donated" className="mt-4">
-                  <DonatedFood donatedFoodList={donatedFoodList} />
-                </TabsContent>
-                <TabsContent value="received" className="mt-4">
-                  <ReceivedFood reservedFoodList={reservedFoodList} />
-                </TabsContent>
-              </Tabs> */}
             </div>
           </CardContent>
         </Card>

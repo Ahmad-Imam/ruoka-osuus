@@ -13,7 +13,6 @@ import { Badge } from "@/components/ui/badge";
 import { capitalizeFirstLetter } from "@/lib/utils";
 
 export default function DonationCard({ item }) {
-  // console.log(item);
   return (
     <Card className="cardFull cardFullDark">
       <CardHeader>

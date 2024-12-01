@@ -5,22 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import ShareAddress from "./ShareAddress";
-import FoodImage from "@/components/FoodImage";
 import { toast } from "sonner";
-import { deleteImage } from "@/supabase/storage/client";
-import {
-  addFoodAction,
-  addRequestAction,
-  getAllFoodAction,
-} from "@/app/actions";
+import { addRequestAction } from "@/app/actions";
 import { useRouter } from "next/navigation";
 import RenderAddress from "@/components/RenderAddress";
 
@@ -41,12 +27,6 @@ export default function RequestForm({ userData }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission (e.g., send data to backend)
-    console.log("Form submitted:", formData);
-
-    // await deleteImage(
-    //   "https://hheakidhvgpegldaqczr.supabase.co/storage/v1/object/public/ruoka/2b7636de-5774-439b-babf-cecef30b0b57.jpeg"
-    // );
     if (formData.address === "") {
       toast.error("Please select an address");
       return;
@@ -54,8 +34,6 @@ export default function RequestForm({ userData }) {
 
     const newFood = await addRequestAction(formData);
     toast.success("Request created successfully!");
-    console.log("newFood");
-    console.log(newFood);
     router.push(`/details/request/${newFood.data[0].id}`);
   };
 
@@ -105,7 +83,7 @@ export default function RequestForm({ userData }) {
         <RenderAddress setFormData={setFormData} />
 
         <Button type="submit" className="text-white">
-          Share Food
+          Share Request
         </Button>
       </form>
     </div>

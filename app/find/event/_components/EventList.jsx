@@ -4,30 +4,21 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import EventCard from "./EventCard";
 
-import {
-  getAllEventLocationAction,
-  getAllRequestLocationAction,
-} from "@/app/actions";
+import { getAllEventLocationAction } from "@/app/actions";
 
 export default function EventList({ allEvents, userRadius }) {
-  // console.log(allFood);
   const [searchTerm, setSearchTerm] = useState("");
   const [foodItems, setFoodItems] = useState(allEvents);
   const [error, setError] = useState(null);
-  // console.log(currentLocation);
+
   const [loading, setLoading] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
 
-    console.log(searchTerm);
-    console.log(foodItems);
-
-    // Filter food items based on search term
     if (searchTerm === "") {
       setFoodItems(allEvents);
       return;
@@ -39,7 +30,6 @@ export default function EventList({ allEvents, userRadius }) {
   };
 
   async function handleMyLocationClick() {
-    console.log("clicked");
     setLoading(true);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -48,14 +38,11 @@ export default function EventList({ allEvents, userRadius }) {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
-          // setCurrentLocation(newLocation);
           setError(null);
           const newFoodList = await getAllEventLocationAction(
             newLocation,
             userRadius
           );
-          console.log(newLocation);
-          console.log(newFoodList);
 
           setFoodItems(newFoodList);
           setLoading(false);

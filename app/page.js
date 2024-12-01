@@ -1,13 +1,5 @@
 import Link from "next/link";
-import {
-  ArrowRight,
-  Utensils,
-  Search,
-  Heart,
-  Users,
-  BarChart,
-  Globe,
-} from "lucide-react";
+import { ArrowRight, Utensils, Search, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -39,7 +31,6 @@ export default function Home({ params }) {
           </div>
         </section>
 
-        {/* Features Section */}
         <section className="py-20 bg-muted">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12">
@@ -65,7 +56,6 @@ export default function Home({ params }) {
           </div>
         </section>
 
-        {/* CTA Section */}
         <section className="py-20">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-4">

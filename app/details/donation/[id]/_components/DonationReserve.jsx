@@ -17,16 +17,10 @@ import {
 } from "@/components/ui/alert-dialog";
 
 export default function DonationReserve({ foodInfo, loggedUser }) {
-  // console.log(loggedUser);
-  // console.log(foodInfo && foodInfo?.userid);
-  // console.log(loggedUser?.id);
   const isLoggedUserFoodOwner =
     foodInfo?.userid.toString() === loggedUser?.id.toString();
-  // console.log(isLoggedUserFoodOwner);
-  // console.log(loggedUser?.id);
-  async function handleReserveClick() {
-    console.log("Reserve food");
 
+  async function handleReserveClick() {
     if (foodInfo?.fstatus === "reserved") {
       await reserveFoodAction(foodInfo.id, "available");
       toast.success("Reservation cancelled");
@@ -37,7 +31,6 @@ export default function DonationReserve({ foodInfo, loggedUser }) {
   }
 
   async function handleCompleteDonation() {
-    console.log("Complete Donation");
     await reserveFoodAction(foodInfo.id, "completed");
     toast.success("Donation completed");
   }
@@ -46,31 +39,13 @@ export default function DonationReserve({ foodInfo, loggedUser }) {
     <div className="flex justify-between items-end w-full">
       {isLoggedUserFoodOwner && foodInfo?.fstatus === "reserved" && (
         <div className="flex justify-between flex-row items-center  w-full">
-          <Button
-            onClick={handleReserveClick}
-            //   disabled={foodInfo?.status !== "reserved"}
-            variant="outline"
-            className=""
-          >
+          <Button onClick={handleReserveClick} variant="outline">
             Cancel Reservation
           </Button>
-          <Button
-            onClick={handleCompleteDonation}
-            className=""
-            //   disabled={foodInfo?.status !== "reserved"}
-          >
-            Complete Donation
-          </Button>
+          <Button onClick={handleCompleteDonation}>Complete Donation</Button>
         </div>
       )}
       {!isLoggedUserFoodOwner && foodInfo?.fstatus === "available" && (
-        // <Button
-        //   disabled={foodInfo?.status === "reserved"}
-        //   onClick={handleReserveClick}
-        // >
-        //   Reserve Food
-        // </Button>
-
         <AlertDialog>
           <AlertDialogTrigger
             asChild
