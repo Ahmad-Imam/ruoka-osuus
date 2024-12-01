@@ -16,11 +16,11 @@ export default function DonatedFood({ donatedFoodList }) {
             key={item.id}
             className=" dark:bg-slate-800 cardFull cardFullDark p-3 rounded-md flex justify-between items-center"
           >
-            <div className="font-medium w-10">{item.title}</div>
+            <div className="font-medium">{item.title}</div>
 
-            <div className="text-sm  ">{item.expirationdate}</div>
+            <div className="text-sm">{item.expirationdate}</div>
 
-            <div className="text-sm  ">{item.amount}</div>
+            <div className="text-sm">{item.amount}</div>
           </Link>
         ))
       ) : (

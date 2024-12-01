@@ -16,9 +16,9 @@ export default function RequestedFood({ requestData }) {
             key={item.id}
             className=" dark:bg-slate-800 cardFull cardFullDark p-3 rounded-md flex justify-between items-center"
           >
-            <div className="font-medium w-10">{item.title}</div>
+            <div className="font-medium">{item.title}</div>
 
-            <div className="text-sm  ">
+            <div className="text-sm">
               {new Date(item.created_at).toLocaleDateString()}
             </div>
           </Link>

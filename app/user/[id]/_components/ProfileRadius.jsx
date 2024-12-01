@@ -42,7 +42,7 @@ export default function ProfileRadius({ userData, isLoggedUser }) {
           <span>{radius} km</span>
           {isLoggedUser && (
             <Button
-              className="text-white"
+              className="text-white font-semibold"
               onClick={() => setRadiusEdit(true)}
               size="sm"
             >

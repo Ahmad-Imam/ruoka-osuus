@@ -68,7 +68,7 @@ export default function RequestForm({ userData }) {
       <h1 className="text-3xl font-bold mb-6">Create Your Request</h1>
       <form onSubmit={handleSubmit} className="space-y-6 w-2/3">
         <div>
-          <Label htmlFor="title">Request Name</Label>
+          <Label htmlFor="title">Title</Label>
           <Input
             id="title"
             name="title"

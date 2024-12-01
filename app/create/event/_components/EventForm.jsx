@@ -146,7 +146,7 @@ export default function EventForm({ userData }) {
       <h1 className="text-3xl font-bold mb-6">Create your event</h1>
       <form onSubmit={handleSubmit} className="space-y-6 w-2/3">
         <div>
-          <Label htmlFor="title">Event Name</Label>
+          <Label htmlFor="title">Title</Label>
           <Input
             className="dark:bg-slate-800"
             id="title"

@@ -148,10 +148,10 @@ export default function DonationForm({ userData }) {
 
   return (
     <div className="w-2/3 flex flex-col items-center space-y-2 my-10">
-      <h1 className="text-3xl font-bold mb-6">Share Your Food</h1>
+      <h1 className="text-3xl font-bold mb-6">Create Your Donation</h1>
       <form onSubmit={handleSubmit} className="space-y-6 w-2/3">
         <div>
-          <Label htmlFor="title">Food Name</Label>
+          <Label htmlFor="title">Title</Label>
           <Input
             id="title"
             name="title"

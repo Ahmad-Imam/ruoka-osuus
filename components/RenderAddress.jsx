@@ -216,7 +216,7 @@ export default function RenderAddress({ setFormData }) {
         ref={placesAutoCompleteRef}
         id="foodAddress"
         name="foodAddress"
-        className="mb-2 bg-slate-800"
+        className="mb-2 dark:bg-slate-800"
       />
       <div className="my-5">Selected Address: {selectedAddress}</div>
       <div className="flex flex-col space-y-4">

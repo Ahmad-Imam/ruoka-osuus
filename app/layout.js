@@ -44,7 +44,7 @@ export default async function RootLayout({ children }) {
             <footer className="border-t ">
               <div className="flex h-14 items-center justify-center ">
                 <p className="text-sm text-muted-foreground">
-                  © 2024 FoodShare. All rights reserved.
+                  © 2024 RuokaOsuus. All rights reserved.
                 </p>
               </div>
             </footer>
