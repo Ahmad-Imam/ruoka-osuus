@@ -24,10 +24,6 @@ export default function Navbar() {
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isFindOpen, setIsFindOpen] = useState(false);
 
-  const pathname = usePathname();
-
-  const lang = pathname.split("/")[1];
-
   return (
     <header className="sticky top-0 border-b h-14 flex justify-between items-center px-20 bg-slate-200 dark:bg-slate-800 dark:text-white z-50">
       <div className="mr-4 hidden md:flex">
@@ -110,7 +106,7 @@ export default function Navbar() {
             >
               <DropdownMenuItem>
                 <Link
-                  href={`/${lang}/find/donation`}
+                  href={`/find/donation`}
                   className=" hover:underline p-1 md:text-sm w-full text-center"
 
                   // onClick={handleLogout}
@@ -120,7 +116,7 @@ export default function Navbar() {
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Link
-                  href={`/${lang}/find/request`}
+                  href={`/find/request`}
                   className=" hover:underline p-1 md:text-sm w-full text-center"
                   prefetch={false}
                   // onClick={handleLogout}
@@ -130,7 +126,7 @@ export default function Navbar() {
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Link
-                  href={`/${lang}/find/event`}
+                  href={`/find/event`}
                   className=" hover:underline p-1 md:text-sm w-full text-center"
                   prefetch={false}
                   // onClick={handleLogout}

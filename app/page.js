@@ -12,8 +12,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Home({ params }) {
-  const lang = params.lang;
-
   return (
     <div className="flex flex-col items-center justify-center bg-background text-foreground">
       <main className="w-full">
@@ -33,7 +31,7 @@ export default function Home({ params }) {
                 </Link>
               </Button>
               <Button asChild variant="outline" className="" size="lg">
-                <Link href={`/${lang}/find/donation`}>
+                <Link href={`/find/donation`}>
                   Find Food <Search className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
@@ -77,7 +75,7 @@ export default function Home({ params }) {
               Join our community and start sharing today!
             </p>
             <Button asChild size="lg" className="text-white">
-              <Link href={`/${lang}/find/donation`}>Get Started</Link>
+              <Link href={`/find/donation`}>Get Started</Link>
             </Button>
           </div>
         </section>
