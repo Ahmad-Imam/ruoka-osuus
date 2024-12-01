@@ -2,7 +2,10 @@ import { createClient } from "@/supabase/server";
 
 export function getAllFood() {
   const supabase = createClient();
-  return supabase.from("food").select();
+  return supabase
+    .from("food")
+    .select()
+    .order("created_at", { ascending: false });
 }
 
 export function getFoodById(id) {
@@ -18,11 +21,10 @@ export function addFood(formData) {
 
 //change food status to reserved
 export function reserveFood(id, newStatus, reserveId) {
-  // console.log(newStatus);
-  // console.log(reserveId);
   const supabase = createClient();
 
   if (newStatus === "reserved") {
+    console.log("in reserveFood");
     return supabase
       .from("food")
       .update({ fstatus: newStatus, reserveid: reserveId })

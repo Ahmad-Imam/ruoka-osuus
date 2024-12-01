@@ -16,9 +16,12 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-export default function DonationReserve({ foodInfo, foodUser, loggedUser }) {
+export default function DonationReserve({ foodInfo, loggedUser }) {
   // console.log(loggedUser);
-  const isLoggedUserFoodOwner = foodInfo?.userid === loggedUser?.id;
+  // console.log(foodInfo && foodInfo?.userid);
+  // console.log(loggedUser?.id);
+  const isLoggedUserFoodOwner =
+    foodInfo?.userid.toString() === loggedUser?.id.toString();
   // console.log(isLoggedUserFoodOwner);
   // console.log(loggedUser?.id);
   async function handleReserveClick() {
@@ -47,13 +50,13 @@ export default function DonationReserve({ foodInfo, foodUser, loggedUser }) {
             onClick={handleReserveClick}
             //   disabled={foodInfo?.status !== "reserved"}
             variant="outline"
-            className="text-white"
+            className=""
           >
             Cancel Reservation
           </Button>
           <Button
             onClick={handleCompleteDonation}
-            className="text-white"
+            className=""
             //   disabled={foodInfo?.status !== "reserved"}
           >
             Complete Donation

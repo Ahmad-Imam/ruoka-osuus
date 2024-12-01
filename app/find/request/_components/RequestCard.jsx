@@ -14,7 +14,7 @@ import { capitalizeFirstLetter } from "@/lib/utils";
 export default function RequestCard({ item }) {
   // console.log(item);
   return (
-    <Card className="flex flex-col justify-between">
+    <Card className="flex flex-col justify-between cardFull cardFullDark">
       <CardHeader>
         <CardTitle className="flex flex-row justify-between ">
           {capitalizeFirstLetter(item.title)}

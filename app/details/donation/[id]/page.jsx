@@ -28,11 +28,13 @@ export default async function DonationDetailsPage({ params }) {
   // ];
 
   const { data: loggedUser, error: loggedUserError } = await getLoggedInUser();
-  // console.log(loggedUser);
+  // console.log(loggedUser.user !== null && loggedUser?.user.id);
 
   const { data: reservedUser, error: reservedUserError } = await getUserById(
     data[0]?.reserveid
   );
+  // console.log(reservedUser !== null && reservedUser[0]?.id);
+  // console.log(reservedUser && reservedUser[0]?.id && reservedUser[0]?.id);
 
   return (
     <div>

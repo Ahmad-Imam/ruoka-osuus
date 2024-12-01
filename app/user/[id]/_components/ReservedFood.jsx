@@ -18,9 +18,7 @@ export default function ReservedFood({ reservedFoodList }) {
 
             <div className="text-sm  ">{item.amount}</div>
             {item?.access_review === 0 && (
-              <Badge className="text-sm text-yellow-500 bg-gray-200">
-                Awaiting Review
-              </Badge>
+              <Badge className="text-sm  ">Awaiting Review</Badge>
             )}
           </Link>
         ))

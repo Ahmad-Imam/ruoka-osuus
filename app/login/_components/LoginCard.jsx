@@ -12,7 +12,7 @@ import LoginButton from "./LoginButton";
 
 export default function LoginCard() {
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-full max-w-md cardFull cardFullDark ">
       <CardHeader className="flex flex-col items-center space-y-2">
         <div className="w-20 h-20 rounded-full bg-green-500 flex items-center justify-center">
           <VeganIcon className="h-12 w-12 text-white" />

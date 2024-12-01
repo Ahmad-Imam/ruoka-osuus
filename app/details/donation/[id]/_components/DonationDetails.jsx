@@ -45,9 +45,15 @@ export default function DonationDetails({
 
   // console.log(foodUser);
   // console.log(foodInfo);
-
-  const isLoggedUserReservedUser = reservedUser?.id === loggedUser?.id;
-  // console.log(loggedUser);
+  let isLoggedUserReservedUser = false;
+  if (loggedUser)
+    isLoggedUserReservedUser = reservedUser?.id === loggedUser?.id;
+  // console.log(isLoggedUserReservedUser);
+  // console.log(loggedUser?.id);
+  // console.log(reservedUser?.id);
+  console.log("as");
+  console.log(foodInfo?.access_review);
+  console.log(isLoggedUserReservedUser);
   // console.log(reservedUser);
   // console.log("isLoggedUserReservedUser");
   // console.log(isLoggedUserReservedUser);
@@ -73,9 +79,11 @@ export default function DonationDetails({
               >
                 {foodInfo.fstatus}
               </Badge>
-              {isLoggedUserReservedUser && foodInfo?.access_review === 0 && (
-                <DonationReview foodInfo={foodInfo} />
-              )}
+              {isLoggedUserReservedUser &&
+                foodInfo?.access_review === 0 &&
+                foodInfo?.fstatus === "completed" && (
+                  <DonationReview foodInfo={foodInfo} />
+                )}
             </div>
           </div>
         </CardHeader>

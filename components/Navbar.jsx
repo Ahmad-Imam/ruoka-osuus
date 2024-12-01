@@ -28,10 +28,12 @@ export default function Navbar() {
     <header className="sticky top-0 border-b h-14 flex justify-between items-center px-20 bg-slate-200 dark:bg-slate-800 dark:text-white z-50">
       <div className="mr-4 hidden md:flex">
         <Link href="/" className="mr-6 flex items-center space-x-2">
-          <span className="hidden font-bold sm:inline-block">FoodShare</span>
+          <span className="hidden font-bold sm:inline-block">Ruoka Osuus</span>
         </Link>
-        <nav className="flex items-center space-x-6 text-sm font-medium">
-          <Link href="/about">About</Link>
+        <nav className="flex items-center space-x-6 text-sm font-semibold">
+          <Link href="/about" className="hover:underline cursor-pointer">
+            About
+          </Link>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <div className="flex flex-row justify-between items-center cursor-pointer hover:underline">
@@ -147,10 +149,18 @@ export default function Navbar() {
         </SheetTrigger>
         <SheetContent side="left" className="w-[240px] sm:w-[300px]">
           <nav className="flex flex-col space-y-4">
-            <Link href="/" onClick={() => setIsOpen(false)}>
+            <Link
+              href="/"
+              onClick={() => setIsOpen(false)}
+              className="hover:underline cursor-pointer"
+            >
               Home
             </Link>
-            <Link href="/about" onClick={() => setIsOpen(false)}>
+            <Link
+              href="/about"
+              onClick={() => setIsOpen(false)}
+              className="hover:underline cursor-pointer"
+            >
               About
             </Link>
 

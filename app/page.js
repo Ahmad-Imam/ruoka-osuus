@@ -19,7 +19,7 @@ export default function Home({ params }) {
         <section className="py-20 text-center">
           <div className="container mx-auto px-4">
             <h1 className="text-4xl sm:text-6xl font-bold mb-4">
-              Welcome to <span className="text-primary">ffff</span>
+              Welcome to <span className="text-primary">Ruoka Osuus</span>
             </h1>
             <p className="mt-3 text-xl sm:text-2xl mb-8">
               Share your excess food and reduce waste in your community
@@ -53,8 +53,8 @@ export default function Home({ params }) {
               />
               <FeatureCard
                 icon={<Search className="h-10 w-10 text-primary" />}
-                title="Find donations, requests and events"
-                description="Discover and request available food shares in your area."
+                title="Find requests and events"
+                description="Discover events and request available food in your area."
               />
               <FeatureCard
                 icon={<Heart className="h-10 w-10 text-primary" />}
@@ -86,7 +86,7 @@ export default function Home({ params }) {
 
 function FeatureCard({ icon, title, description }) {
   return (
-    <Card className="flex flex-col items-center justify-start text-start">
+    <Card className="flex flex-col items-center justify-start text-start cardFull cardFullDark">
       <CardHeader className="flex flex-col justify-center items-center">
         <div className="pb-2">{icon}</div>
         <CardTitle>{title}</CardTitle>
