@@ -8,7 +8,6 @@ import { Label } from "@/components/ui/label";
 import { useJsApiLoader } from "@react-google-maps/api";
 
 export default function RenderMap({ location }) {
-  // console.log(location);
   const libs = ["places", "core", "maps", "marker"];
 
   const mapRef = useRef(null);
@@ -29,7 +28,7 @@ export default function RenderMap({ location }) {
         mapId: "MY-MAP-ID-1234",
         colorScheme: google.maps.ColorScheme.FOLLOW_SYSTEM,
       };
-      // console.log(mapOptions?.center);
+
       const gMap = new google.maps.Map(mapRef.current, mapOptions);
 
       const marker = new google.maps.marker.AdvancedMarkerElement({

@@ -40,9 +40,6 @@ export default function FoodImage({ setFormData }) {
 
       const uploadedUrl = imageUrl;
 
-      console.log("image urls");
-      console.log(uploadedUrl);
-
       setFormData((prev) => ({
         ...prev,
         imageUrl: uploadedUrl,

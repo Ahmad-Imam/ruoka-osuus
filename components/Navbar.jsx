@@ -37,18 +37,7 @@ export default function Navbar() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <div className="flex flex-row justify-between items-center cursor-pointer hover:underline">
-                <button
-                  // variant="link"
-                  className="text-sm font-semibold md:text-sm flex items-center gap-2"
-                >
-                  {/* <Image
-                  src={loggedUser?.avatar_url}
-                  width={30}
-                  height={30}
-                  alt="user-image"
-                  className="rounded-full"
-                  prefetch="true"
-                /> */}
+                <button className="text-sm font-semibold md:text-sm flex items-center gap-2">
                   Create
                 </button>
                 <ChevronDownIcon className="ml-1 h-4 w-4" />
@@ -63,7 +52,6 @@ export default function Navbar() {
                   href="/create/donation"
                   className=" hover:underline p-1 md:text-sm w-full text-center"
                   prefetch={false}
-                  // onClick={handleLogout}
                 >
                   Donation
                 </Link>
@@ -73,7 +61,6 @@ export default function Navbar() {
                   href="/create/request"
                   className=" hover:underline p-1 md:text-sm w-full text-center"
                   prefetch={false}
-                  // onClick={handleLogout}
                 >
                   Request
                 </Link>
@@ -82,8 +69,6 @@ export default function Navbar() {
                 <Link
                   href="/create/event"
                   className=" hover:underline p-1 md:text-sm w-full text-center"
-
-                  // onClick={handleLogout}
                 >
                   Events
                 </Link>
@@ -93,10 +78,7 @@ export default function Navbar() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <div className="flex flex-row justify-between items-center cursor-pointer hover:underline">
-                <button
-                  // variant="link"
-                  className="text-sm font-semibold md:text-sm flex items-center gap-2"
-                >
+                <button className="text-sm font-semibold md:text-sm flex items-center gap-2">
                   Find
                 </button>
                 <ChevronDownIcon className="ml-1 h-4 w-4" />
@@ -110,8 +92,6 @@ export default function Navbar() {
                 <Link
                   href={`/find/donation`}
                   className=" hover:underline p-1 md:text-sm w-full text-center"
-
-                  // onClick={handleLogout}
                 >
                   Donations
                 </Link>
@@ -121,7 +101,6 @@ export default function Navbar() {
                   href={`/find/request`}
                   className=" hover:underline p-1 md:text-sm w-full text-center"
                   prefetch={false}
-                  // onClick={handleLogout}
                 >
                   Requests
                 </Link>
@@ -131,7 +110,6 @@ export default function Navbar() {
                   href={`/find/event`}
                   className=" hover:underline p-1 md:text-sm w-full text-center"
                   prefetch={false}
-                  // onClick={handleLogout}
                 >
                   Events
                 </Link>

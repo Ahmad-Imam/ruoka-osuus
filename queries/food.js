@@ -15,16 +15,14 @@ export function getFoodById(id) {
 
 export function addFood(formData) {
   const supabase = createClient();
-  console.log("in addFood");
+
   return supabase.from("food").upsert(formData).select();
 }
 
-//change food status to reserved
 export function reserveFood(id, newStatus, reserveId) {
   const supabase = createClient();
 
   if (newStatus === "reserved") {
-    console.log("in reserveFood");
     return supabase
       .from("food")
       .update({ fstatus: newStatus, reserveid: reserveId })
@@ -40,23 +38,18 @@ export function reserveFood(id, newStatus, reserveId) {
 }
 
 export async function getAllFoodFromLocation(location, radius) {
-  console.log("in getAllFoodFromLocation");
-  console.log(location?.lat);
-  console.log(location?.lng);
   const supabase = createClient();
   const { data, error } = await supabase.rpc("find_nearby_places", {
     user_lat: location?.lat,
     user_lng: location?.lng,
     search_radius: radius ?? 10,
   });
-  // console.log(data);
+
   return data;
 }
 
 export async function getDonatedFoodByUserId(userId) {
   const supabase = createClient();
-
-  //get all food items by user id also sort by created date
 
   return supabase
     .from("food")
@@ -67,8 +60,6 @@ export async function getDonatedFoodByUserId(userId) {
 
 export async function getReservedFoodByUserId(userId) {
   const supabase = createClient();
-
-  //get all food items by user id also sort by created date
 
   return supabase
     .from("food")
@@ -82,7 +73,6 @@ export async function submitReviewFood(reviewData, foodId) {
 
   const { access_review, comm_review, quality_review } = reviewData;
 
-  //insert access_review, comm_review, quality_review to food table
   const { data, error } = await supabase
     .from("food")
     .update({

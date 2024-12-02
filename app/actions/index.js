@@ -1,10 +1,6 @@
 "use server";
 
-import {
-  addEvent,
-  addInterestedUserToEvent,
-  getAllEventFromLocation,
-} from "@/queries/event";
+import { addEvent, getAllEventFromLocation } from "@/queries/event";
 import {
   addFood,
   getAllFood,
@@ -66,7 +62,6 @@ export async function getAllFoodLocationAction(location, radius) {
 
 export async function submitReviewFoodAction(reviewData, foodId) {
   const newFood = await submitReviewFood(reviewData, foodId);
-  console.log("Review submitted");
   revalidatePath("/details/donation/" + foodId);
   return newFood;
 }
@@ -90,12 +85,6 @@ export async function getAllRequestLocationAction(location, radius) {
 export async function addEventAction(formData) {
   const newFood = await addEvent(formData);
   revalidatePath("/find/event");
-  return newFood;
-}
-
-export async function addInterestedUserToEventAction(eventId, userId) {
-  const newFood = await addInterestedUserToEvent(eventId, userId);
-  revalidatePath("/details/event/" + eventId);
   return newFood;
 }
 

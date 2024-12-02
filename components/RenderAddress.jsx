@@ -176,14 +176,12 @@ export default function RenderAddress({ setFormData }) {
       const longitude = position.coords.longitude;
       setCurrentPosition({ lat: latitude, lng: longitude });
       setMarker({ lat: latitude, lng: longitude }, "Current Location");
-      console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
       const currentAddress = await new google.maps.Geocoder().geocode(
         {
           location: { lat: latitude, lng: longitude },
         },
         (results, status) => {
           if (status === "OK") {
-            console.log(results[0].formatted_address);
             setSelectedAddress(results[0].formatted_address);
             setFormData((prev) => ({
               ...prev,
@@ -196,7 +194,6 @@ export default function RenderAddress({ setFormData }) {
           }
         }
       );
-      console.log(currentAddress);
     }
 
     function error() {

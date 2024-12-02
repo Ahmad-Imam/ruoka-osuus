@@ -13,8 +13,6 @@ export function getUserById(id) {
 export async function getReviewsFromFood(userId) {
   const supabase = createClient();
 
-  //from food table get all food items by user id where quality_review is not 0
-
   return supabase
     .from("food")
     .select()

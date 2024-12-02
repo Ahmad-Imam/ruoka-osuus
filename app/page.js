@@ -7,7 +7,6 @@ export default function Home({ params }) {
   return (
     <div className="flex flex-col items-center justify-center bg-background text-foreground">
       <main className="w-full">
-        {/* Hero Section */}
         <section className="py-20 text-center">
           <div className="container mx-auto px-4">
             <h1 className="text-4xl sm:text-6xl font-bold mb-4">

@@ -186,8 +186,6 @@ export default function DonationForm({ userData }) {
           </Select>
         </div>
 
-        {/* <FoodImage setFormData={setFormData} /> */}
-
         <div className="flex justify-center items-center flex-col gap-8">
           <input
             type="file"

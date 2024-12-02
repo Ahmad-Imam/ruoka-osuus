@@ -1,17 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { Button } from "@/components/ui/button";
 
 import { ChromeIcon as Google } from "lucide-react";
 import { loginUser } from "@/app/actions";
-import { supabaseBrowser } from "@/supabase/browser";
 
 export default function LoginButton() {
   async function handleLogin() {
-    console.log("login");
     await loginUser();
-    console.log("login done");
   }
 
   return (
