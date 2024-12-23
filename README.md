@@ -8,6 +8,8 @@ Live: https://ruoka-osuus.vercel.app
 
 Ruoka Osuus is a food-sharing platform where users can donate their food, create donation requests, or organize food donation events for the community. The application is developed using Next.js and Supabase as databases.
 
+NOTE: Supabase automatically pauses a project on the free tier, which has to be manually unpaused again. If the application is not showing data/error log-in, this might be a reason for this. Contact me in that case so I can unpause the DB.
+
 ## Frontend Instructions
 
 1. Run npm install
